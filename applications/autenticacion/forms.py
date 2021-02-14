@@ -1,0 +1,34 @@
+from django.forms import ModelForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django import forms
+
+
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model=User
+        fields=['username','email','first_name','last_name','password1','password2']
+        
+    
+    def __init__(self, *args, **kwargs):
+        super(CreateUserForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].error_messages.update({
+            'required': 'El campo nombre es obligatorio',
+        })
+        self.fields['last_name'].error_messages.update({
+            'required': 'El campo apellido es obligatorio',
+        })
+        self.fields['password1'].error_messages.update({
+            'required': 'Ingrese una contraseña correcta',
+        })
+        self.fields['password2'].error_messages.update({
+            'required': 'Debe reingresar la contraseña',
+        })
+        
+
+        for key in self.fields:
+            self.fields[key].required = True 
+
+
+
+

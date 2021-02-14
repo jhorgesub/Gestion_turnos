@@ -1,0 +1,14 @@
+{% extends 'turnos/base_turnos.html' %}{% block content %} {% load crispy_forms_tags %}
+<p>Registrar Turno</p>
+
+
+<a href="{% url 'lista_turnos' %}" class="btn btn-primary">Listado de Turnos</a>
+
+
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %} {{ form}}
+    <button type="submit" class="btn btn-success mt-4">Registrar</button>
+</form>
+
+
+{% endblock content %}

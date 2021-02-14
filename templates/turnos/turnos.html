@@ -1,0 +1,34 @@
+{% extends 'turnos/base_turnos.html' %} {% block content %}
+
+<p>Lista de turnos </p>
+
+
+<table>
+
+    <a href="{% url 'registro_turnos' %}" class="btn btn-success">Add</a>
+    <thead>
+        <td>ID</td>
+        <td>|</td>
+
+        <td>Fecha</td>
+
+
+    </thead>
+
+    <tbody>
+
+
+
+        {% for t in listado_turnos %}
+        <tr>
+            <td>{{t.id}}</td>
+            <td></td>
+            <td>{{t.date}}</td>
+
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock content %}
