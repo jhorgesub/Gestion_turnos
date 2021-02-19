@@ -32,9 +32,10 @@ DATABASES = {
         'NAME': BASE_DIR + 'db.sqlite3',
     }
 } """
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS =(os.path.join(BASE_DIR,'static'),)
+EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+EMAIL_HOST_USER='info.app.g6@gmail.com' ## Es un correo creado para enviar las solicitudes de cambo de pass
+EMAIL_HOST_PASSWORD='informatorio2020'

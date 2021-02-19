@@ -6,7 +6,21 @@
 
 
 <form action="" method="post" autocomplete="off">
-    {% csrf_token %} {{ form}}
+    {% csrf_token %} {{ form }} {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-danger my-3" role="alert">
+
+
+            {{ message }}
+        </div>
+
+
+
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <button type="submit" class="btn btn-success mt-4">Registrar</button>
 </form>
 

@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('turnos/',include('applications.admin_turnos.urls')),
     path('',include('applications.autenticacion.urls')),
+    
 
 
 ]

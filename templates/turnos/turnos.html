@@ -2,28 +2,53 @@
 
 <p>Lista de turnos </p>
 
-
-<table>
-
+<table class="table text-center">
     <a href="{% url 'registro_turnos' %}" class="btn btn-success">Add</a>
     <thead>
-        <td>ID</td>
-        <td>|</td>
-
-        <td>Fecha</td>
-
-
+        <tr>
+            <th scope="col">Dia</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Estado</th>
+        </tr>
     </thead>
-
     <tbody>
 
 
+        <!-- 'pendiente', _('El turno se encuentra pendiente')),
+       ('finalizado', _('El turno se encuentra finalizado')),
+       ('cancelado', _('El turno se encuentra cancelado')), -->
 
         {% for t in listado_turnos %}
-        <tr>
-            <td>{{t.id}}</td>
-            <td></td>
+        <tr scope="row">
+
             <td>{{t.date}}</td>
+            <td>{{t.time}}</td>
+
+
+            {% if t.status == 'pendiente' %}
+
+            <td>
+                <p class=" py-2 bg-warning text-white text-dark">{{t.status}}</p>
+            </td>
+
+            {% endif %} {% if t.status == 'cancelado' %}
+
+            <td>
+                <p class="bg-danger text-white text-center">{{t.status}}</p>
+            </td>
+
+            {% endif %} {% if t.status == 'finalizado' %}
+
+            <td>
+                <p class="bg-success text-white text-center">{{t.status}}</p>
+            </td>
+
+            {% endif %}
+
+
+
+
+
 
 
         </tr>
@@ -31,4 +56,5 @@
 
     </tbody>
 </table>
+
 {% endblock content %}

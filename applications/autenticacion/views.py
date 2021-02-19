@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
 
-    return render(request,"turnos/base_turnos.html")
+    return render(request,"index.html")
 
 
 
