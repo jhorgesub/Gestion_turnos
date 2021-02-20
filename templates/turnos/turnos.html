@@ -1,9 +1,12 @@
-{% extends 'turnos/base_turnos.html' %} {% block content %}
+ {% extends 'turnos/base_turnos.html' %} {% block content %}
 
-<p>Lista de turnos </p>
+
 
 <table class="table text-center">
-    <a href="{% url 'registro_turnos' %}" class="btn btn-success">Add</a>
+    <h3 class="">Lista de turnos </h3>
+
+    <a href="{% url 'registro_turnos' %}" class="btn btn-success ml-auto mb-5">Nuevo Turno</a>
+
     <thead>
         <tr>
             <th scope="col">Dia</th>

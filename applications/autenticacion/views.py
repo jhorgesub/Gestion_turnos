@@ -76,7 +76,21 @@ def register(request):
 
             
     return render(request,"autenticacion/register.html",context)
-  
+
+
+@login_required(login_url='login')
+def editar_perfil(request):
+
+
+    if request.method=='POST':
+        
+        return redirect('listado_turnos')
+    else :
+
+        
+        return render(request,"autenticacion/form_edit_user.html")
+
+
 
 
 
