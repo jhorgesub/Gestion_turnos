@@ -41,22 +41,10 @@
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a class="navbar-brand nav-link" href="{% url 'home' %}">Inicio</a> </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+
             </ul>
 
-            <!-- SEARCH FORM -->
-            <form class="form-inline ml-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-                    </div>
-                </div>
-            </form>
+
 
 
         </nav>
@@ -85,61 +73,67 @@
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
+                                <i class="nav-icon fas fa-edit"></i>
                                 <p>
-                                    UI Elements
+                                    Turnos
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
+
+
                                 <li class="nav-item">
-                                    <a href="pages/UI/general.html" class="nav-link">
+                                    <a href="{% url 'buscar_turno' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>General</p>
+                                        <p>Registrar Nuevo Turno</p>
                                     </a>
                                 </li>
+
+                                {% if user.is_staff %}
+
                                 <li class="nav-item">
-                                    <a href="pages/UI/icons.html" class="nav-link">
+                                    <a href="{% url 'lista_turnos' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Icons</p>
+                                        <p>Listado de Turnos</p>
                                     </a>
                                 </li>
+
+                                {% else %}
                                 <li class="nav-item">
-                                    <a href="pages/UI/buttons.html" class="nav-link">
+                                    <a href="{% url 'lista_turnos' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Buttons</p>
+                                        <p>Mis Turnos</p>
                                     </a>
                                 </li>
+
+
+
+                                {% endif %}
+
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class=" nav-icon fas fa-cog"></i>
+                                <p>
+                                    Configuración
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+
                                 <li class="nav-item">
-                                    <a href="pages/UI/sliders.html" class="nav-link">
+                                    <a href="{% url 'perfil-edit' %}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Sliders</p>
+                                        <p>Editar Perfil</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/modals.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Modals & Alerts</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/navbar.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Navbar & Tabs</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/timeline.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Timeline</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="pages/UI/ribbons.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Ribbons</p>
-                                    </a>
-                                </li>
+
+
+
                             </ul>
                         </li>
 

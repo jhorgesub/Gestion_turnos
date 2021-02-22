@@ -30,13 +30,14 @@ class Turno(models.Model):
 
 
     date = models.DateField('date', auto_now=False, auto_now_add=False)
-    time = models.TimeField('time', auto_now=False, auto_now_add=False,default=datetime.now(),choices=HORARIOS)
+    time = models.TimeField('time', auto_now=False, auto_now_add=False,default=datetime.now())
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     status = models.CharField(
        max_length=32,
        choices=STATUS,
        default='pendiente',
    )
+
 
 
     class Meta:

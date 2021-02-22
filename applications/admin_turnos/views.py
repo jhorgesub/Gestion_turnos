@@ -1,7 +1,7 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from datetime import datetime
 from .forms import TurnoForm
-from .models import Turno,User
+from .models import Turno, User
 from datetime import date
 from django.contrib.auth.decorators import login_required
 
@@ -10,14 +10,69 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def buscarTurno(request):
-    
-        consulta = Turno.objects.filter(date=fecha, time=hora)
+   
+  
+
+    if request.GET.get('date')=='':
+        context = {'errors':'Ingrese una fecha correcta'}
+        return render(request, "turnos/buscar_turno.html", context)
 
 
+    if request.method =='GET':
 
 
+        if request.GET.get('date') != None:
+            fecha = request.GET.get('date')
+            
 
+            
+            ## Hago una copia de los horarios para cada turno
+            horarios = Turno.HORARIOS.copy()
+
+            
+            try:
+                turnos_disponibles = Turno.objects.filter(date=fecha)
+            except Exception as e: 
+                context = {'errors':'La fecha ingresada es incorrecta.'}
+                return render(request, "turnos/buscar_turno.html", context)
+            
+
+            fecha = datetime.strptime(fecha,'%Y-%m-%d')
+
+            if (fecha.date() - date.today()).days <0 :
+                context = {'errors':'La fecha ingresada es antigua.'}
+
+                return render(request, "turnos/buscar_turno.html", context)
+
+
+            
+
+            if turnos_disponibles.count()!=0:
+                
+                for t in turnos_disponibles:
+                    for h in horarios:
+                        if t.time == h[0]:
+                            horarios.remove(h)
+                            break
+
+            
+            
+            return render(request, "turnos/buscar_turno.html", {'fecha':fecha,'horarios':horarios})
+
+        else:
+            return render(request, "turnos/buscar_turno.html", {})
+
+    else:
         return redirect('lista_turnos')
+
+    consulta = Turno.objects.filter(date=fecha)
+        
+
+
+
+
+
+    return redirect('registro_turnos')
 
 
 
@@ -32,8 +87,11 @@ def registrar_turno(request):
 
     if request.method=='GET':
         form=TurnoForm()
-
+    
+            
         return render(request,"turnos/form_registro.html",{'form':form})
+
+
     else:
 
         # 2020-04-20
@@ -68,7 +126,7 @@ def registrar_turno(request):
 
         form= TurnoForm(request.POST)
 
-        ## Remover los horarios que ya esta en turno pendiente
+        # Remover los horarios que ya esta en turno pendiente
 
 
 
