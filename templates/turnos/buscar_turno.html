@@ -7,9 +7,11 @@
 <div class="d-block registro-turnos ">
 
 
-    <form action="{% url 'buscar_turno' %}" method="GET" autocomplete="off">
+    <form action="{% url 'buscar_turno' %}" method="POST" autocomplete="off">
+        {% csrf_token %}
         <label for="date"></label>
-        <input class="my-4" type="date" name="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" value="{{fecha}}">
+        <input class="my-4" type="date" name="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" value="{{fecha}}"> {{form.cancha}}
+
         <button type="submit" class="btn-sm btn-success mx-3">Buscar</button>
     </form>
 
@@ -51,10 +53,17 @@
        ('finalizado', _('El turno se encuentra finalizado')),
        ('cancelado', _('El turno se encuentra cancelado')), -->
 
-        {% for h in horarios %}
+        {% for h in horarios_disponibles %}
         <tr scope="row">
 
             <td>{{h}}</td>
+            <form action="{% url 'registro_turnos' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="hora" id="hora" value="{{h.id}}">
+                <input type="hidden" name="fecha" id="fecha" value="{{fecha}}">
+                <input type="hidden" name="cancha" id="cancha" value="{{cancha}}">
+                <td><button type="submit" class="btn-sm btn-success">Seleccionar</button></td>
+            </form>
 
         </tr>
         {% endfor %}

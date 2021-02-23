@@ -1,4 +1,7 @@
 from django.contrib import admin
-from .models import Turno
+from .models import Turno,Cancha,Horario
 
 admin.site.register(Turno)
+admin.site.register(Cancha)
+admin.site.register(Horario)
+
