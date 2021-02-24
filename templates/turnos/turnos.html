@@ -11,53 +11,85 @@
         <tr>
             <th scope="col">Dia</th>
             <th scope="col">Hora</th>
+            <th scope="col">Cancha</th>
             <th scope="col">Estado</th>
+
+
+            {% if user.is_staff %}
+            <th scope="col">DNI</th>
+            <th scope="col">Nombre Usuario</th>
+
+            {% endif %}
+
+
         </tr>
     </thead>
     <tbody>
 
-
-        <!-- 'pendiente', _('El turno se encuentra pendiente')),
-       ('finalizado', _('El turno se encuentra finalizado')),
-       ('cancelado', _('El turno se encuentra cancelado')), -->
 
         {% for t in listado_turnos %}
         <tr scope="row">
 
             <td>{{t.date}}</td>
             <td>{{t.time}}</td>
+            <td>{{t.cancha}}</td>
+            <td>{{t.status}}</td>
 
-
-            {% if t.status == 'pendiente' %}
-
+            {% if user.is_staff %}
             <td>
-                <p class=" py-2 bg-warning text-white text-dark">{{t.status}}</p>
+                <p class=" text-dark">{{t.usuario.username}}</p>
+            </td>
+            <td>
+
+                {% if t.usuario.is_staff == False %}
+                <p class=" text-dark"> {{t.usuario.first_name}} {{t.usuario.last_name}}</p>
+                {% else %}
+                <p class=" text-dark"> Admin</p>
+                {% endif %}
+
             </td>
 
-            {% endif %} {% if t.status == 'cancelado' %}
-
-            <td>
-                <p class="bg-danger text-white text-center">{{t.status}}</p>
-            </td>
-
-            {% endif %} {% if t.status == 'finalizado' %}
-
-            <td>
-                <p class="bg-success text-white text-center">{{t.status}}</p>
-            </td>
-
+            {% endif %} {% if t.status == "pendiente" %}
+            <td><button type="button" class="btn-sm btn-danger " data-toggle="modal" data-target="#cancelarTurno" data-hora="{{t.time}}" data-cancha="{{t.cancha}}" data-fecha="{{t.date}}" data-id={{t.id}}>
+                
+            
+                Cancelar Turno
+               
+            </button></td>
             {% endif %}
-
-
-
-
-
-
-
         </tr>
         {% endfor %}
 
     </tbody>
 </table>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cancelarTurno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancelar Turno</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <p id="text-cancelar">Desea cancelar el turno con los siguientes datos : </p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-primary" id="confirmarCancelar">Cancelar Turno</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 {% endblock content %}

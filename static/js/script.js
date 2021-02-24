@@ -3,7 +3,6 @@ window.onload = function() {
 
     if (window.location.pathname == '/register/') {
 
-        console.log(form_fields)
         form_fields[1].placeholder = 'DNI (Sin puntos)';
         form_fields[2].placeholder = 'Nombre/s';
         form_fields[3].placeholder = 'Apellido/s';
@@ -33,7 +32,77 @@ window.onload = function() {
     }
 
     today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("datefield").setAttribute("min", today);
+    try {
+        document.getElementById("datefield").setAttribute("min", today);
+
+    } catch (error) {
+
+    }
+
+
+
+    let botones = document.querySelectorAll('[data-target="#registroTurno"]');
+
+    botones.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            let hora = this.dataset.id;
+            let cancha = this.dataset.cancha;
+            let fecha = this.dataset.fecha;
+
+            // Asignar datos a ventana modal:
+            document.querySelector('#hora').value = hora;
+            document.querySelector('#fecha').value = fecha;
+            document.querySelector('#cancha').value = cancha;
+
+        });
+    });
+
+
+
+
+    let btncancelarTurno = document.querySelectorAll('[data-target="#cancelarTurno"]');
+
+    btncancelarTurno.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            let turno = this.dataset.id;
+            let fecha = this.dataset.fecha;
+            let hora = this.dataset.hora;
+            let cancha = this.dataset.cancha;
+
+
+
+
+
+
+            // Asignar datos a ventana modal:
+
+            let c = document.getElementById('text-cancelar');
+            c.innerHTML = "Desea cancelar el turno con los siguientes datos ? <hr> <br> Fecha : " + fecha +
+                "<br> Hora : " + hora +
+                "<br> Cancha : " + cancha
+            document.getElementById('confirmarCancelar').href = '/turnos/cancelar/' + turno
+
+
+
+
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

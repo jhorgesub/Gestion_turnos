@@ -108,6 +108,11 @@ media/
 *.db
 *.pid
 
+settings/
+settings.py
+
+
+
 # Ignore Django Migrations in Development if you are working on team
 
 # Only for Development only

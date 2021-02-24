@@ -61,18 +61,8 @@ class Turno(models.Model):
     STATUS =(
        ('pendiente', _('El turno se encuentra pendiente')),
        ('finalizado', _('El turno se encuentra finalizado')),
-       ('cancelado', _('El turno se encuentra cancelado')),
         )
 
-    HORARIOS =[
-       (time(8, 00, 00), '8:00 hs'),
-       (time(9, 00, 00), '9:00 hs'),
-       (time(10, 00, 00), '10:00 hs'),
-       (time(11, 00, 00), '11:00 hs'),
-       (time(17, 00, 00), '17:00 hs'),
-       (time(18, 00, 00), '18:00 hs'),
-       (time(19, 00, 00), '19:00 hs'),
-    ]
 
 
     date = models.DateField('date', auto_now=False, auto_now_add=False)
@@ -94,4 +84,4 @@ class Turno(models.Model):
         verbose_name_plural = 'Turnos'
 
     def __str__(self):
-        return str(self.date) + "- "+ str(self.time)
+        return str(self.date) + "- "+ str(self.time) + "- "+ str(self.cancha)
