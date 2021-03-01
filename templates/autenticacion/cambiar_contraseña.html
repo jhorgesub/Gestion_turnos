@@ -1,0 +1,32 @@
+{% extends 'turnos/base_turnos.html' %}{% block content %}
+
+
+<div class="edit-user">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Cambiar contraseña</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="card-body">
+               
+              
+               {{form.as_p}}
+                
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock content %}

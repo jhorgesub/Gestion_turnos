@@ -2,11 +2,15 @@
 
 from django.shortcuts import render,redirect
 from datetime import datetime
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import (
+    UserCreationForm, 
+    UserChangeForm, 
+    PasswordChangeForm
+)
 from django.contrib.auth.models import User
-from .forms import CreateUserForm
+from .forms import CreateUserForm, EditProfileForm
 from django.contrib import messages
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
@@ -78,19 +82,32 @@ def register(request):
     return render(request,"autenticacion/register.html",context)
 
 
-@login_required(login_url='login')
 def editar_perfil(request):
-
-
     if request.method=='POST':
+        form=EditProfileForm(request.POST, instance=request.user)
         
-        return redirect('listado_turnos')
+        if form.is_valid():
+            form.save()
+            return redirect('lista_turnos')
     else :
+        form=EditProfileForm(instance=request.user)
+        args={'form':form}
+        return render(request,"autenticacion/form_edit_user.html", args)
 
+def cambiar_contraseña(request):
+    if request.method=='POST':
+        form=PasswordChangeForm(data=request.POST, user=request.user)
         
-        return render(request,"autenticacion/form_edit_user.html")
-
-
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect('lista_turnos')
+        else:
+            return redirect('cambiar_contraseña')
+    else :
+        form=PasswordChangeForm(user=request.user)
+        args={'form':form}
+        return render(request,"autenticacion/cambiar_contraseña.html", args)
 
 
 

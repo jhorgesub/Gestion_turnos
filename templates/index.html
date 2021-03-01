@@ -19,8 +19,25 @@
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
+    <link rel="apple-touch-icon" sizes="57x57" href="{%static 'favicon/apple-icon-57x57.png'%}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{%static 'favicon/apple-icon-60x60.png'%}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{%static 'favicon/apple-icon-72x72.png'%}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{%static 'favicon/apple-icon-76x76.png'%}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{%static 'favicon/apple-icon-114x114.png'%}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{%static 'favicon/apple-icon-120x120.png'%}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{%static 'favicon/apple-icon-144x144.png'%}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{%static 'favicon/apple-icon-152x152.png'%}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{%static 'favicon/apple-icon-180x180.png'%}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{%static 'favicon/android-icon-192x192.png'%}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'favicon/favicon-32x32.png'%}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{%static 'favicon/favicon-96x96.png'%}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'favicon/favicon-16x16.png'%}">
+    <link rel="manifest" href="{%static 'favicon/manifest.json'%}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-    <title>Registro Turnos</title>
+    <title>Inicio</title>
 </head>
 
 <body>
@@ -47,7 +64,7 @@
 
 
                     <li class="nav-item ">
-                        <a class="navbar-brand mx-5" href="#">Bienvenido 
+                        <a class="navbar-brand mx-5" href="#">Hola,
                             {% if user.first_name %}
                             {{request.user.first_name}}
                             {% else %}
@@ -76,7 +93,7 @@
 
                         <li class="nav-item ">
 
-                            <a class="btn btn-warning text-light" href="{% url 'login' %}">Iniciar Sesion</a> {% endif %}
+                            <a class="btn btn-warning text-light" href="{% url 'login' %}">Iniciar Sesión</a> {% endif %}
 
                         </li>
 
@@ -109,7 +126,7 @@
 
 
     <footer class="index-footer pt-4">
-        <p>© Informatorio 2020 -G6. ·</p>
+        <p>© Informatorio 2020 - G6</p>
     </footer>
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

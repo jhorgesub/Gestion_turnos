@@ -19,8 +19,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'dbgestionturnos',
-        'USER': 'adrianapp',
-        'PASSWORD': 'cursodjango',
+        'USER': 'postgres',
+        'PASSWORD': 'infoinfo',
         'HOST':'localhost',
         'PORT':'5432'
     }
