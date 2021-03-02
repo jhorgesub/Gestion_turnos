@@ -3,6 +3,7 @@ from .forms import TurnoForm,CanchaForm
 from .models import Turno, User,Cancha,Horario
 from datetime import date,datetime
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -10,15 +11,9 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def buscarTurno(request):
         
-    """ select admin_turnos_horario.id , admin_turnos_horario."time" from admin_turnos_horario  where admin_turnos_horario.id 
-    NOT IN (select admin_turnos_turno.time_id from admin_turnos_turno where admin_turnos_turno.date='2021-02-24')
+    if request.user.is_staff:
+        return redirect('lista_turnos')
 
-
-    select  * from admin_turnos_turno inner join admin_turnos_horario on admin_turnos_horario.id = admin_turnos_turno.time_id
-    where  admin_turnos_turno.date='2021-02-24'
-
-
-    select * from admin_turnos_horario """
 
     form = TurnoForm()
 
@@ -89,7 +84,6 @@ def buscarTurno(request):
 def registrar_turno(request):
 
 
-    print(request.POST)
     fecha=request.POST['fecha']
     hora=request.POST['hora']
     cancha=request.POST['cancha']
@@ -99,35 +93,104 @@ def registrar_turno(request):
     turnoNuevo = Turno(date=fecha,time=Horario.objects.get(pk=hora),cancha=Cancha.objects.get(pk=cancha),usuario=request.user)
     turnoNuevo.save()
 
+
             
     return redirect('lista_turnos')
 
 
  
 
+
 @login_required(login_url='login')
 def lista_turnos(request):
+
+
 
     ## Antes de listar modifico el estado de los turnos de la fecha actual cuyo horario ha pasado 
     lista = Turno.objects.all()
     fecha_actual = date.today()
     hora_actual = datetime.now().time()
     for l in lista : 
-        if l.date==fecha_actual and hora_actual> l.time.time:
+        if (l.date==fecha_actual and hora_actual> l.time.time) or fecha_actual>l.date:
             Turno.objects.filter(pk=l.id).update(status='finalizado')
-            
-            
-            
-     
+        
 
+
+
+    ## Verifico si hay un numero de pagina especificado
+    if request.method=='GET':
+        npagina=request.GET.get('page')
+    else:
+        npagina=1
+
+    
+    ## Si el user es administrador permito la busqueda por fecha o dni o todos los turnos si dni y fecha no se especifica
+    ## caso contrario listo todos los turnos correspondientes al usuario
 
     if request.user.is_staff:
-        context ={'listado_turnos':Turno.objects.all().order_by('-date')}
+    
+
+
+        if request.GET.get('fecha')!=None:
+            fecha=request.GET.get('fecha')
+
+            try:
+                context ={'listado_turnos':Turno.objects.filter(date=fecha).order_by('-date')}
+            except Exception as e :
+                return redirect('lista_turnos')
+
+
+        elif request.GET.get('dni')!=None:
+            dni=request.GET.get('dni')
+            try:
+                context ={'listado_turnos':Turno.objects.filter(usuario=User.objects.get(username=dni)).order_by('-date')}
+            except Exception as e :
+                
+                context ={'listado_turnos':[],'errors':"No existe el usuario buscado"}
+
+
+        else:
+            context ={'listado_turnos':Turno.objects.all().order_by('-date')}
+
     
     else:
         context ={'listado_turnos':Turno.objects.filter(usuario=request.user).order_by('-date')}
+
+
+
+
+    ### Pagino los resultados 
+
+    paginacion = Paginator(context['listado_turnos'],5)
+
     
-   
+
+    
+    try:
+        pag  = paginacion.page(npagina)
+        context['listado_turnos']=pag
+        context['current_page']=int(npagina)
+
+    except Exception as e :
+
+        ## Si se presenta algun inconvenietne en la paginacion (por ej una pagina que no existe ) vuelvo a la primer pagina
+        if request.GET.get('fecha')!=None:
+            return redirect('/turnos?page=1&fecha='+request.GET.get('fecha'))
+         
+        elif request.GET.get('dni')!=None:
+            context['errors']="No se encontro el usuario"
+            
+        else:
+            return redirect('/turnos?page=1')
+
+    
+                    
+        
+
+        
+    
+   ## Envio la cantidad de turnos
+    context['count']=paginacion.count
 
     return render(request,"turnos/turnos.html",context)
 
@@ -140,18 +203,6 @@ def cancelarTurno(request,id=0):
     turno=Turno.objects.filter(pk=id)
     if turno.exists():
         turno.delete()
-    
-    return redirect('lista_turnos')
-  
-
-## Finaliza el turno (cambia el estado pendiente a finalizado)
-@login_required(login_url='login')
-def finalizarTurno(request,id=0):
-    
-
-    turno=Turno.objects.filter(pk=id)
-    if turno.exists():
-        turno.update(status='finalizado')
     
     return redirect('lista_turnos')
   

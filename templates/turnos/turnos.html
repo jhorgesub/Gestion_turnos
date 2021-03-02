@@ -5,27 +5,66 @@
 <table class="table text-center">
     <h3 class="">Lista de Turnos </h3>
 
-    <a href="{% url 'buscar_turno' %}" class="btn btn-success ml-auto mb-5">Nuevo Turno</a>
+    {% if user.is_staff == False %}
+    <a href="{% url 'buscar_turno' %}" class="btn btn-success ml-auto mb-5">Nuevo Turno</a> {% else %}
+
+
+    <div class="row align-center ml-auto">
+
+        <div class="col-12">
+            <form action="" method="GET">
+                <label for="fecha" class="mx-3">Buscar fecha</label>
+                <input type="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" name="fecha">
+                <button type="submit" class="btn-sm btn-success my-3">Buscar Fecha</button>
+            </form>
+        </div>
+
+        <div class="col-12 my-4">
+            <form action="" method="GET">
+                <label for="dni" class="mx-3">Buscar DNI</label>
+                <input type="text" value="" name="dni" id="dni">
+                <button type="submit" class="btn-sm btn-success my-3">Buscar DNI</button>
+
+
+            </form>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+
+    {% if errors %}
+    <div class="alert alert-danger my-4" role="alert">
+        {{errors}}</div> {% endif %}
+
 
     <thead>
         <tr>
-            <th scope="col">Día</th>
+            <th scope="col">Dia</th>
             <th scope="col">Hora</th>
             <th scope="col">Cancha</th>
             <th scope="col">Estado</th>
-
-
             {% if user.is_staff %}
             <th scope="col">DNI</th>
             <th scope="col">Nombre Usuario</th>
 
             {% endif %}
-
+            <th scope="col">Acciones</th>
 
         </tr>
     </thead>
     <tbody>
 
+        <tr scope="row">
+
+            <td colspan="12"> {% if count == 0 %}
+                <div class="alert alert-warning" role="alert">
+                    No hay turnos para mostrar
+                </div> {% endif %}</td>
+
+
+        </tr>
 
         {% for t in listado_turnos %}
         <tr scope="row">
@@ -39,6 +78,7 @@
             <td>
                 <p class=" text-dark">{{t.usuario.username}}</p>
             </td>
+
             <td>
 
                 {% if t.usuario.is_staff == False %}
@@ -46,22 +86,150 @@
                 {% else %}
                 <p class=" text-dark"> Admin</p>
                 {% endif %}
+            </td>
+            {% endif %}
+
+
+            <td>
+                {% if t.status == "pendiente" %}
+                <button type="button" class="btn-sm btn-danger " data-toggle="modal" data-target="#cancelarTurno" data-hora="{{t.time}}" data-cancha="{{t.cancha}}" data-fecha="{{t.date}}" data-id={{t.id}}>
+                
+            
+                Cancelar
+               
+            </button> {% endif %}
 
             </td>
 
-            {% endif %} {% if t.status == "pendiente" %}
-            <td><button type="button" class="btn-sm btn-danger " data-toggle="modal" data-target="#cancelarTurno" data-hora="{{t.time}}" data-cancha="{{t.cancha}}" data-fecha="{{t.date}}" data-id={{t.id}}>
-                
-            
-                Cancelar Turno
-               
-            </button></td>
-            {% endif %}
+
+
+
         </tr>
         {% endfor %}
 
     </tbody>
 </table>
+
+
+<nav aria-label="Page navigation example  pagination-container">
+
+    <ul class="pagination">
+
+        {% if listado_turnos.has_previous %}
+
+        <li class="page-item">
+
+            {% if request.GET.dni %}
+            <a class="page-link" href="?page={{ listado_turnos.previous_page_number }}&dni={{request.GET.dni}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            {% elif request.GET.fecha %}
+            <a class="page-link" href="?page={{ listado_turnos.previous_page_number }}&fecha={{request.GET.fecha}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            {% else %}
+
+
+            <a class="page-link" href="?page={{ listado_turnos.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+            {% endif %}
+
+
+
+        </li>
+
+
+        {% endif %} {% for page in listado_turnos.paginator.page_range %} {% if current_page == page %} {% if request.GET.dni %}
+        <li class="page-item active ">
+
+
+            <a class="page-link" href="?page={{ page }}&dni={{request.GET.dni}}">{{ page }}</a>
+
+
+        </li>
+        {% elif request.GET.fecha %}
+        <li class="page-item active ">
+
+
+            <a class="page-link" href="?page={{ page }}&fecha={{request.GET.fecha}}">{{ page }}</a>
+
+
+        </li>
+        {% else %}
+        <li class="page-item active ">
+
+
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+
+
+        </li>
+        {% endif %} {% else %} {% if request.GET.dni %}
+        <li class="page-item  ">
+
+
+            <a class="page-link" href="?page={{ page }}&dni={{request.GET.dni}}">{{ page }}</a>
+
+
+        </li>
+        {% elif request.GET.fecha %}
+        <li class="page-item  ">
+
+
+            <a class="page-link" href="?page={{ page }}&fecha={{request.GET.fecha}}">{{ page }}</a>
+
+
+        </li>
+        {% else %}
+        <li class="page-item  ">
+
+
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+
+
+        </li>
+        {% endif %} {% endif %} {% endfor %} {% if listado_turnos.has_next %} {% if request.GET.dni %}
+
+        <li class="page-item">
+            <a class="page-link" href="?page={{ listado_turnos.next_page_number }}&dni={{request.GET.dni}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+
+
+
+        {% elif request.GET.fecha %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ listado_turnos.next_page_number }}&fecha={{request.GET.fecha}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ listado_turnos.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        {% endif %} {% endif %}
+
+    </ul>
+
+
+</nav>
+
+
+
+
+
 
 
 

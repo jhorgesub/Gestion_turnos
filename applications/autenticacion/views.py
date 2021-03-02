@@ -82,6 +82,9 @@ def register(request):
     return render(request,"autenticacion/register.html",context)
 
 
+
+
+
 def editar_perfil(request):
     if request.method=='POST':
         form=EditProfileForm(request.POST, instance=request.user)
@@ -90,6 +93,7 @@ def editar_perfil(request):
             form.save()
             return redirect('lista_turnos')
     else :
+
         form=EditProfileForm(instance=request.user)
         args={'form':form}
         return render(request,"autenticacion/form_edit_user.html", args)

@@ -9,7 +9,6 @@ urlpatterns = [
     path('jsi18n',JavaScriptCatalog.as_view(),name='js-catalog'),
     path('registrar/', views.registrar_turno,name='registro_turnos'),
     path('buscar/', views.buscarTurno,name='buscar_turno'),
-    path('finalizar/<int:id>/', views.finalizarTurno,name='finalizar_turno'),
     path('cancelar/<int:id>/', views.cancelarTurno,name='cancelar_turno'),
 
 ]
