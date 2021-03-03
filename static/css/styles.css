@@ -4,8 +4,8 @@ html {
     padding: 0;
     min-height: 100%;
     min-width: 100%;
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
+    font-family: 'Asap', sans-serif;
+    font-weight: 400;  
 }
 
 .user_card {
@@ -66,7 +66,7 @@ html {
 }
 
 .index-footer {
-    font-size: 15px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     background: rgb(101, 101, 101);
     text-align: center;
