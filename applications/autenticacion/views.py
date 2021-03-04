@@ -12,7 +12,7 @@ from .forms import CreateUserForm, EditProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-
+from.models import Noticia
 # Create your views here.
 
 
@@ -49,7 +49,7 @@ def loginPage(request):
 @login_required(login_url='login')
 def logoutPage(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
    
 
 def register(request):
@@ -114,7 +114,9 @@ def cambiar_contraseña(request):
         args={'form':form}
         return render(request,"autenticacion/cambiar_contraseña.html", args)
 
-
+def mostrar_noticia(request):
+    noticia=Noticia.objects.all()
+    return render(request, 'autenticacion/noticias.html', {'noticia':noticia})
 
     
 
