@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Alegreya+Sans:ital,wght@1,300&family=Asap:wght@500&family=Krona+One&family=Poppins:wght@200&family=Quicksand&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
@@ -37,15 +39,17 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>Inicio</title>
+    <title>JOGO BONITO F5</title>
 </head>
 
 <body>
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-            <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
+        <nav class="navbar navbar-expand-lg px-5">
+            <a class="navbar-brand py-3" href="{% url 'home' %}">
+                <img src="{% static 'img/logo-jogo-bonito.svg' %}" height="90"/>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -84,7 +88,7 @@
 
                     <li class="nav-item ">
 
-                        <a class="btn btn-warning text-white" href="{% url 'login' %}">Iniciar Sesión</a>
+                        <a class="btn btn-dark" href="{% url 'login' %}">Iniciar Sesión</a>
 
                     </li>
 
@@ -98,11 +102,8 @@
     </header>
 
 
-    <main class="my-5">
-
+    <main>
         {% block content %} {% endblock content %}
-
-
     </main>
 
 

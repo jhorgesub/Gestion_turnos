@@ -1,7 +1,8 @@
 {% extends 'index.html' %} {% load static %}{% block content %}
 
-
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div class="home-banner">
+    </div>
+   <!--  <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class=""></li>
             <li data-target="#myCarousel" data-slide-to="1" class=""></li>
@@ -9,7 +10,7 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img class="first-slide img-carrusel" src="{% static 'img/cancha_2.jpg' %}" alt="First slide">  
+                <img class="first-slide img-carrusel" src="{% static 'img/cancha_2.jpg' %}" alt="First slide">
                 <div class="container">
                     <div class="carousel-caption text-md-center"> Cancha 1
                         <h1> </h1>
@@ -18,7 +19,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="second-slide img-carrusel" src="{% static 'img/cancha_3.jpg' %}" alt="Second slide"> 
+                <img class="second-slide img-carrusel" src="{% static 'img/cancha_3.jpg' %}" alt="Second slide">
                 <div class="container">
                     <div class="carousel-caption text-md-center"> Cancha 2
                         <h1> </h1>
@@ -27,7 +28,7 @@
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="third-slide img-carrusel" src="{% static 'img/cancha_4.jpg' %}" alt="Third slide"> 
+                <img class="third-slide img-carrusel" src="{% static 'img/cancha_4.jpg' %}" alt="Third slide">
                 <div class="container">
                     <div class="carousel-caption text-md-center"> Cancha 3
                         <h1></h1>
@@ -44,21 +45,35 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
-    </div>
-<div class="text-center"> Todas nuestras canchas cuentan con césped sintético y sistemas de luces led de última generación para que puedas disfrutar de la mejor experiencia en toda Resistencia
-</div>
-    <div class="container">
-
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <h1 class="text-xl-center mt-2 animate__animated animate__bounce">JOGO BONITO FÚTBOL 5</h1>
-
-
-                <hr class="mt-0 mb-4"> 
+    </div> -->
+<div class="container my-5">
+    <h1 class="text-center mb-5 border-bottom">El mejor servicio</h1>
+    <div class="card-deck">
+        <div class="card">
+            <img class="card-img-top" src="{% static 'img/card-1.png' %}" alt="Césped sintético">
+            <div class="card-body">
+                <h5 class="card-title">Césped sintético</h5>
+                <p class="card-text">Todas nuestras canchas cuentan con césped sintético.</p>
             </div>
         </div>
-
+        <div class="card">
+            <img class="card-img-top" src="{% static 'img/card-2.png' %}" alt="Infraestructura">
+            <div class="card-body">
+                <h5 class="card-title">Infraestructura</h5>
+                <p class="card-text">Canchas techadas y sistemas de luces led de última generación para que puedas disfrutar de la mejor
+                experiencia sin importar el clima.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="{% static 'img/card-3.png' %}" alt="3 Canchas">
+            <div class="card-body">
+                <h5 class="card-title">3 Canchas</h5>
+                <p class="card-text">Ampliación continúa para que no te quedes sin tu lugar.
+                </p>
+            </div>
+        </div>
     </div>
+</div>
 
 
 
