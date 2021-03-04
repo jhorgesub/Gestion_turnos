@@ -188,3 +188,15 @@ aside .logout {
 .registro-turnos {
     margin: 5rem;
 }
+
+.nav-pagination {
+    margin: 2rem;
+    align-items: center;
+    width: 100%;
+}
+
+.dataTables_wrapper {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 100%;
+}

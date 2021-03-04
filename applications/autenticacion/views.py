@@ -11,7 +11,6 @@ from django.contrib.auth.models import User
 from .forms import CreateUserForm, EditProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
-
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -87,6 +86,8 @@ def register(request):
 
 def editar_perfil(request):
     if request.method=='POST':
+
+     
         form=EditProfileForm(request.POST, instance=request.user)
         
         if form.is_valid():

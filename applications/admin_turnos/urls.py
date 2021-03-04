@@ -10,5 +10,6 @@ urlpatterns = [
     path('registrar/', views.registrar_turno,name='registro_turnos'),
     path('buscar/', views.buscarTurno,name='buscar_turno'),
     path('cancelar/<int:id>/', views.cancelarTurno,name='cancelar_turno'),
-
+    path('visitante', views.vistante_index,name='user_visitante'),
+    path('visitante/buscar/', views.vistante_buscar,name='user_visitante_buscar'),
 ]

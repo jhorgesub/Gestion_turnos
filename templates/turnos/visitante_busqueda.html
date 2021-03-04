@@ -1,0 +1,69 @@
+{% extends 'turnos/visitante_gestion.html' %}{% block content %}
+
+
+<h3 class="">Buscar Horarios Disponibles</h3>
+
+
+<div class="d-block registro-turnos ">
+
+
+    <form action="{% url 'user_visitante_buscar' %}" method="POST" autocomplete="off">
+        {% csrf_token %}
+        <label for="date"></label>
+        <input class="my-4" type="date" name="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" value="{{fecha}}"> {{form.cancha}}
+
+        <button type="submit" class="btn-sm btn-success mx-1 my-3">Buscar</button>
+    </form>
+
+
+    {% if errors %}
+
+    <div class="alert alert-danger my-3" role="alert">
+
+
+        {{ errors }}
+    </div>
+    {% endif %}
+
+
+
+
+</div>
+
+
+
+
+<table class="table text-center">
+
+    <thead>
+        <tr>
+            <h3 class="text-center">Horarios Disponibles</h3>
+        </tr>
+
+        <tr>
+
+            <th scope="col">Hora Disponible</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+
+
+        {% for h in horarios_disponibles %}
+        <tr scope="row">
+
+            <td>{{h}}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+
+
+
+{% endblock content %}

@@ -1,36 +1,53 @@
  {% extends 'turnos/base_turnos.html' %} {% block content %}
 
 
+<div class="row">
 
-<table class="table text-center">
-    <h3 class="">Lista de Turnos </h3>
+    <div class="col-12">
+        <h3>Lista de Turnos </h3>
 
-    {% if user.is_staff == False %}
-    <a href="{% url 'buscar_turno' %}" class="btn btn-success ml-auto mb-5">Nuevo Turno</a> {% else %}
+        {% if user.is_staff == False %}
+        <a href="{% url 'buscar_turno' %}" class="btn btn-success mt-3">Nuevo Turno</a> {% endif %}
 
-
-    <div class="row align-center ml-auto">
-
-        <div class="col-12">
-            <form action="" method="GET">
-                <label for="fecha" class="mx-3">Buscar fecha</label>
-                <input type="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" name="fecha">
-                <button type="submit" class="btn-sm btn-success my-3">Buscar Fecha</button>
-            </form>
-        </div>
-
-        <div class="col-12 my-4">
-            <form action="" method="GET">
-                <label for="dni" class="mx-3">Buscar DNI</label>
-                <input type="text" value="" name="dni" id="dni">
-                <button type="submit" class="btn-sm btn-success my-3">Buscar DNI</button>
-
-
-            </form>
-        </div>
-        {% endif %}
 
     </div>
+
+
+
+</div>
+
+
+<div class="row align-center ml-auto mt-5">
+
+
+    <form action="" method="GET">
+        <label for="fecha" class="mx-3">Buscar fecha</label>
+        <input type="date" id="datefield" onkeydown="return false" placeholder="Seleccione fecha" name="fecha">
+        <button type="submit" class="btn-sm btn-success mx-2">Buscar Fecha</button>
+    </form>
+
+
+    {% if user.is_staff %}
+
+    <div class="col-12 my-4">
+        <form action="" method="GET">
+            <label for="dni" class="mx-3">Buscar DNI</label>
+            <input type="text" value="" name="dni" id="dni">
+            <button type="submit" class="btn-sm btn-success my-3">Buscar DNI</button>
+
+
+        </form>
+    </div>
+
+    {% endif %}
+
+
+
+
+</div>
+
+<table id="example" class="table text-center tabla-turnos mt-5">
+
 
 
 
@@ -55,18 +72,18 @@
         </tr>
     </thead>
     <tbody>
-
+        {% if count == 0 %}
         <tr scope="row">
 
-            <td colspan="12"> {% if count == 0 %}
+            <td colspan="12">
                 <div class="alert alert-warning" role="alert">
                     No hay turnos para mostrar
-                </div> {% endif %}</td>
+                </div>
+            </td>
 
 
         </tr>
-
-        {% for t in listado_turnos %}
+        {% endif %} {% for t in listado_turnos %}
         <tr scope="row">
 
             <td>{{t.date}}</td>
@@ -108,10 +125,15 @@
         {% endfor %}
 
     </tbody>
+
+
+
+
+
 </table>
 
 
-<nav aria-label="Page navigation example  pagination-container">
+<nav class="Page navigation example nav-pagination">
 
     <ul class="pagination">
 
