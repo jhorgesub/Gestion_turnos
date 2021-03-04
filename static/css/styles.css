@@ -5,7 +5,13 @@ html {
     min-height: 100%;
     min-width: 100%;
     font-family: 'Asap', sans-serif;
-    font-weight: 400;  
+    font-weight: 400;
+}
+
+h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #39b54a;
+    font-size: 3.5rem;
 }
 
 .user_card {
@@ -77,6 +83,37 @@ html {
     border-top: 1px solid #ddd;
 }
 
+/* HEADER
+-------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+header nav {
+    background-color: rgba(30, 47, 41, 0.6);
+}
+
+
+/* HOME BANNER
+-------------------------------------------------- */
+
+.home-banner {
+    background: url('../img/slide1-min.png') right / cover no-repeat;
+    height: 100vh;
+    width: 100%;
+}
+
+/* CARDS
+-------------------------------------------------- */
+
+h5.card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #39b54a;
+    font-size: 1.5rem;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */

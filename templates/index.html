@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Advent+Pro&family=Alegreya+Sans:ital,wght@1,300&family=Asap:wght@500&family=Krona+One&family=Poppins:wght@200&family=Quicksand&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600;1,700&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
@@ -37,16 +41,19 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>Inicio</title>
+    <title>JOGO BONITO F5</title>
 </head>
 
 <body>
 
     <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-            <a class="navbar-brand" href="{% url 'home' %}">Inicio</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-lg px-5">
+            <a class="navbar-brand py-3" href="{% url 'home' %}">
+                <img src="{% static 'img/logo-jogo-bonito.svg' %}" height="90"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -82,7 +89,7 @@
 
                         <li class="nav-item ">
 
-                            <a class="btn btn-warning text-white" href="{% url 'login' %}">Iniciar Sesión</a>
+                            <a class="btn btn-dark" href="{% url 'login' %}">Iniciar Sesión</a>
 
                         </li>
 
@@ -96,21 +103,18 @@
     </header>
 
 
-    <main class="my-5">
-
+    <main>
         {% block content %} {% endblock content %}
-
-
     </main>
 
-    
+
     <footer class="index-footer pt-4">
-        
+
         <p>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
               </svg>
-            <i class="bi bi-facebook"></i> https://www.facebook.com/jogobonito5/  
+            <i class="bi bi-facebook"></i> https://www.facebook.com/jogobonito5/
         <p/>
         <p>
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
