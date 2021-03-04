@@ -21,11 +21,6 @@ def buscarTurno(request):
         context = {'form':form}
         return render(request, "turnos/buscar_turno.html", context)
 
-    
-    
-    
-
-
     fecha = request.POST.get('date')
     cancha = request.POST.get('cancha')
  
@@ -127,19 +122,31 @@ def lista_turnos(request):
     ## Si el user es administrador permito la busqueda por fecha o dni o todos los turnos si dni y fecha no se especifica
     ## caso contrario listo todos los turnos correspondientes al usuario
 
-    if request.user.is_staff:
+
     
 
-
+    if request.user.is_staff==False:
         if request.GET.get('fecha')!=None:
             fecha=request.GET.get('fecha')
+            print(fecha)
 
             try:
                 context ={'listado_turnos':Turno.objects.filter(date=fecha).order_by('-date')}
             except Exception as e :
-                return redirect('lista_turnos')
+                return redirect('lista_turnos')  
+        else : 
+            context ={'listado_turnos':Turno.objects.filter(usuario=request.user).order_by('-date')}
+    
+    else :
+        if request.GET.get('fecha')!=None:
+            fecha=request.GET.get('fecha')
+            print(fecha)
 
-
+            try:
+                context ={'listado_turnos':Turno.objects.filter(date=fecha).order_by('-date')}
+            except Exception as e :
+                return redirect('lista_turnos')  
+        
         elif request.GET.get('dni')!=None:
             dni=request.GET.get('dni')
             try:
@@ -147,14 +154,13 @@ def lista_turnos(request):
             except Exception as e :
                 
                 context ={'listado_turnos':[],'errors':"No existe el usuario buscado"}
-
-
-        else:
+        
+        else : 
             context ={'listado_turnos':Turno.objects.all().order_by('-date')}
+    
 
     
-    else:
-        context ={'listado_turnos':Turno.objects.filter(usuario=request.user).order_by('-date')}
+        
 
 
 
@@ -178,7 +184,7 @@ def lista_turnos(request):
             return redirect('/turnos?page=1&fecha='+request.GET.get('fecha'))
          
         elif request.GET.get('dni')!=None:
-            context['errors']="No se encontro el usuario"
+            return redirect('/turnos?page=1&dni='+request.GET.get('dni'))
             
         else:
             return redirect('/turnos?page=1')
@@ -206,3 +212,138 @@ def cancelarTurno(request,id=0):
     
     return redirect('lista_turnos')
   
+
+
+
+def vistante_index(request):
+    if(request.user.is_authenticated):
+        return redirect('lista_turnos')
+    else:
+        return render(request,'turnos/visitante_gestion.html')
+
+
+
+def vistante_buscar(request):
+
+    if(request.user.is_authenticated):
+
+        return redirect('lista_turnos')
+    
+    
+    else:
+        form = TurnoForm()
+        context = {'form':form}
+        if request.method=='GET' : 
+            return render(request,'turnos/visitante_busqueda.html',context)
+        else :
+            fecha = request.POST.get('date')
+            cancha = request.POST.get('cancha')
+
+        
+
+            if fecha==None or cancha==None:
+                return render(request, "turnos/visitante_busqueda.html", {'form':form,'errors':'Ingrese datos correctos'})
+            
+            try :
+                fecha_dt = datetime.strptime(fecha, '%Y-%m-%d')
+            except Exception  :
+                error = "Ingrese una fecha correcta "
+                return render(request, "turnos/visitante_busqueda.html", {'form':form, 'errors':error})
+
+
+            if fecha_dt.isoweekday()==7:
+                return render(request, "turnos/visitante_busqueda.html", {'form':form, 'errors':"Las canchas no se encuentran disponibles el día domingo"})
+            
+            
+
+            horarios_ocupados=[]
+
+            try:
+                consulta_turnos = Turno.objects.filter(date=fecha , cancha=cancha).values('time')
+            except Exception as e :
+                e= "Ingrese datos correctos"
+                return render(request, "turnos/visitante_busqueda.html", {'form':form, 'errors':e})
+            
+
+            
+
+            for h in consulta_turnos:
+
+                horarios_ocupados.append(h['time'])
+
+
+
+            horarios_disponibles = Horario.objects.exclude(id__in=horarios_ocupados).order_by('time')
+            
+
+            ## Si la fecha es igual al dia actual filtro los horarios disponibles posterior a la hora en que se esta solicitando 
+            if str(date.today())==fecha:
+                for h2 in horarios_disponibles :
+                
+                    if h2.time < datetime.now().time():
+                        
+                        horarios_disponibles=horarios_disponibles.exclude(time=h2.time)
+
+            
+            context = {'form':form , 'horarios_disponibles': horarios_disponibles,'fecha':fecha, 'cancha':cancha}
+            return render(request, "turnos/visitante_busqueda.html", context)
+
+
+
+
+
+
+def busqueda_horarios(request):
+
+    
+    fecha = request.POST.get('date')
+    cancha = request.POST.get('cancha')
+
+ 
+
+    if fecha==None or cancha==None:
+        return render(request, "turnos/buscar_turno.html", {'form':form,'errors':'Ingrese datos correctos'})
+    
+    try :
+        fecha_dt = datetime.strptime(fecha, '%Y-%m-%d')
+    except Exception  :
+        error = "Ingrese una fecha correcta "
+        return render(request, "turnos/buscar_turno.html", {'form':form, 'errors':error})
+
+
+    if fecha_dt.isoweekday()==7:
+        return render(request, "turnos/buscar_turno.html", {'form':form, 'errors':"Las canchas no se encuentran disponibles el día domingo"})
+    
+    
+
+    horarios_ocupados=[]
+
+    try:
+        consulta_turnos = Turno.objects.filter(date=fecha , cancha=cancha).values('time')
+    except Exception as e :
+        e= "Ingrese datos correctos"
+        return render(request, "turnos/buscar_turno.html", {'form':form, 'errors':e})
+    
+
+    
+
+    for h in consulta_turnos:
+
+        horarios_ocupados.append(h['time'])
+
+
+
+    horarios_disponibles = Horario.objects.exclude(id__in=horarios_ocupados).order_by('time')
+    
+
+    ## Si la fecha es igual al dia actual filtro los horarios disponibles posterior a la hora en que se esta solicitando 
+    if str(date.today())==fecha:
+        for h2 in horarios_disponibles :
+           
+            if h2.time < datetime.now().time():
+                
+                horarios_disponibles=horarios_disponibles.exclude(time=h2.time)
+
+    
+    context = {'form':form , 'horarios_disponibles': horarios_disponibles,'fecha':fecha, 'cancha':cancha}
+    return render(request, "turnos/buscar_turno.html", context)
