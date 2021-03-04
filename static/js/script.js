@@ -1,4 +1,21 @@
 window.onload = function() {
+
+
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bInfo": false,
+            "bAutoWidth": false
+        });
+
+
+
+
+    });
+
+
     var form_fields = document.getElementsByTagName('input')
 
     if (window.location.pathname == '/register/') {

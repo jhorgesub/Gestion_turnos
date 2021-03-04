@@ -8,17 +8,11 @@ User._meta.get_field('username').error_messages={'unique':"El DNI ingresado ya s
 
 
 
-
-
-
 """ 
-
-
 
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
-    dni= models.CharField('dni', max_length=50,unique=True)
-    role = models.CharField("role", max_length=50,default='ROLE_USER')
+    avatar = models.ImageField('avatar', upload_to=None, height_field=None, width_field=None, max_length=None)
 
     class Meta:
         
@@ -27,5 +21,5 @@ class Perfil(models.Model):
         verbose_name_plural = 'Perfiles'
 
     def __str__(self):
-        return self.usuario.username + " - ROL : " + self.role
- """
+        return self.usuario.username + self.usuario.first_name + self.usuario.last_name
+"""
