@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import editar_perfil
+
 urlpatterns = [
     
     path('', views.index,name='home'),
@@ -20,6 +20,6 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='autenticacion/password_reset_done.html'),name="password_reset_complete"),
     path('usuario/editar', views.editar_perfil, name="perfil-edit"),
     path('cambiar_contraseña/', views.cambiar_contraseña, name="cambiar_contraseña"),
-    
+    path('novedades/', views.mostrar_noticia, name="novedades"),
 
 ]

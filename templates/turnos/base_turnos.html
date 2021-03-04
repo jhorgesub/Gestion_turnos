@@ -40,7 +40,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>Pagina Turnos</title>
+    <title>Página Turnos</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -74,7 +74,7 @@
             <a href="{% url 'lista_turnos' %}" class="brand-link">
                 <img src="{% static 'favicon/favicon-32x32.png' %}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light d-block">Gestion Turnos</span>
+                <span class="brand-text font-weight-light d-block">Gestión Turnos</span>
             </a>
 
             <!-- Sidebar -->
@@ -89,12 +89,16 @@
 
                         {% if user.is_authenticated %}
                         <div class="text-center text-white">
-                            <p class="navbar-brand  my-3 " href="#"> Bienvenido/a {{request.user.first_name}}
+                            <p class="navbar-brand  my-3 " href="#"> Hola, {{request.user.first_name}}
                             </p> 
                         {% endif %}
 
                         </div>
-
+                        {% if user.perfil.avatar %}
+                        <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
+                        {% else %}
+                        <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
+                        {% endif %}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-edit"></i>
@@ -268,7 +272,7 @@
 
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <p>© Informatorio 2020 -G6. ·</p>
+        <p>© Informatorio 2020 - G6</p>
 
 
     </footer>
