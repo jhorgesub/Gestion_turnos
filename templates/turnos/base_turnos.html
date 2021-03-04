@@ -7,16 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
 
     <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
-    <link rel="stylesheet"
-        href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
 
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -72,64 +70,65 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="{% url 'lista_turnos' %}" class="brand-link">
-                <img src="{% static 'favicon/favicon-32x32.png' %}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{% static 'favicon/favicon-32x32.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light d-block">Gestión Turnos</span>
             </a>
 
             <!-- Sidebar -->
-            <div class="sidebar"> 
+            <div class="sidebar">
 
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
 
                         {% if user.is_authenticated %}
                         <div class="text-center text-white">
                             <p class="navbar-brand  my-3 " href="#"> Hola, {{request.user.first_name}}
-                            </p> 
-                        {% endif %}
+                            </p>
+                            {% endif %}
 
                         </div>
-                        {% if user.perfil.avatar %}
-                        <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
-                        {% else %}
-                        <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
-                        {% endif %}
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
+
+                        <div class="avatar mb-3">
+
+                            {% if user.perfil.avatar %}
+                            <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
+                            <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
+
+                        </div>
+                        <li class="nav-item has-treeview ">
+                            <a href="# " class="nav-link ">
+                                <i class="nav-icon fas fa-edit "></i>
                                 <p>
                                     Turnos
-                                    <i class="fas fa-angle-left right"></i>
+                                    <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ">
 
                                 {% if user.is_staff %}
 
-                                <li class="nav-item">
-                                    <a href="{% url 'lista_turnos' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                <li class="nav-item ">
+                                    <a href="{% url 'lista_turnos' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
                                         <p>Listado de Turnos</p>
                                     </a>
                                 </li>
 
                                 {% else %}
 
-                                <li class="nav-item">
+                                <li class="nav-item ">
 
-                                    <a href="{% url 'buscar_turno' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a href="{% url 'buscar_turno' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
                                         <p>Registrar Nuevo Turno</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'lista_turnos' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                <li class="nav-item ">
+                                    <a href="{% url 'lista_turnos' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
                                         <p>Mis Turnos</p>
                                     </a>
                                 </li>
@@ -139,20 +138,20 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class=" nav-icon fas fa-cog"></i>
+                        <li class="nav-item has-treeview ">
+                            <a href="# " class="nav-link ">
+                                <i class=" nav-icon fas fa-cog "></i>
                                 <p>
                                     Configuración
-                                    <i class="fas fa-angle-left right"></i>
+                                    <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ">
 
 
-                                <li class="nav-item">
-                                    <a href="{% url 'perfil-edit' %}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                <li class="nav-item ">
+                                    <a href="{% url 'perfil-edit' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
                                         <p>Editar Perfil</p>
                                     </a>
                                 </li>
@@ -180,10 +179,10 @@
                 <!-- /.sidebar-menu -->
 
 
-                <div class="text-center logout">
+                <div class="text-center logout ">
 
                     {% if user.is_authenticated %}
-                    <a class="btn btn-danger" href="{% url 'logout' %}"><i class="fas fa-power-off"></i></a> {% endif %}
+                    <a class="btn btn-danger " href="{% url 'logout' %} "><i class="fas fa-power-off "></i></a> {% endif %}
 
 
                 </div>
@@ -206,14 +205,14 @@
 
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper ">
 
 
             <!-- Main content -->
-            <section class="content mt-5 p-5">
-                <div class="container">
+            <section class="content mt-5 p-5 ">
+                <div class="container ">
                     <!-- Small boxes (Stat box) -->
-                    <div class="row" id="contenido-gestion">
+                    <div class="row " id="contenido-gestion ">
 
 
 
@@ -271,36 +270,25 @@
 
 
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
+    <footer class="main-footer ">
         <p>© Informatorio 2020 - G6</p>
 
 
     </footer>
 
-<<<<<<< HEAD
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-=======
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
->>>>>>> d2a383a9ecfa6c08cf9effb03040ef4657742592
-    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
 
-    <script src="{% static 'js/adminlte.js' %}"></script>
+    <script src="{% static 'plugins/jquery/jquery.min.js' %} "></script>
+    <script src="{% static 'plugins/jquery-ui/jquery-ui.min.js' %} "></script>
 
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/adminlte.js' %} "></script>
+
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js "></script>
+    <script src="{% static 'js/script.js' %} "></script>
 
 
 
