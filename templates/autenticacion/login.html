@@ -1,14 +1,15 @@
  {% extends 'index.html' %}{% block content %}
 
 <div class="container h-100">
+    <br><br><br><br><br><br>
     <div class="d-flex justify-content-center h-100">
         <div class="user_card">
             <div class="d-flex justify-content-center">
 
-
                 <h3 id="form-title">Ingresar</h3>
             </div>
-            <div class="d-flex justify-content-center form_container">
+            
+            <div class="d-flex justify-content-xl-center form_container">
                 <form method="POST" action="">
                     {% csrf_token %}
                     <div class="input-group mb-3">
@@ -34,26 +35,22 @@
 
             {% if messages %}
             <ul class="messages">
-                {% for message in messages %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                {% for message in messages %} 
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                 <div class="alert alert-danger my-3" role="alert">
-
-
                     {{ message }}
                 </div>
-
-
-
-
-                {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                {% endif %} 
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
                 <div class="alert alert-success my-3" role="alert">
                     {{ message }}
-                </div> {% endif %}
+                </div> 
+                {% endif %}
 
                 </li>
                 {% endfor %}
             </ul>
             {% endif %}
-
 
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
