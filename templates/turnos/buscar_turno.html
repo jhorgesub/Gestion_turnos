@@ -43,7 +43,12 @@
         <tr>
 
             <th scope="col">Hora</th>
+
+            {% if request.user.perfil.bloqueado == False %}
             <th scope="col">Acción</th>
+
+            {% endif %}
+
         </tr>
     </thead>
     <tbody>
@@ -58,7 +63,13 @@
 
             <td>{{h}}</td>
 
+
+            {% if request.user.perfil.bloqueado == False %}
             <td><button type="button" class="btn-sm btn-success" data-target="#registroTurno" data-toggle="modal" data-fecha="{{fecha}}" data-cancha="{{cancha}}" data-id="{{h.id}}">Seleccionar</button></td>
+
+            {% endif %}
+
+
 
         </tr>
 

@@ -8,6 +8,7 @@ User._meta.get_field('username').error_messages={'unique':"El DNI ingresado ya s
 class Perfil(models.Model):
     usuario = models.OneToOneField(User, null= True, on_delete=models.CASCADE)
     avatar = models.ImageField(null=True, blank=True, upload_to='images/')
+    bloqueado = models.BooleanField(default=False)
 
     class Meta:
         

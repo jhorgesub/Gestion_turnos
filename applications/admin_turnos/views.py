@@ -347,3 +347,12 @@ def busqueda_horarios(request):
     
     context = {'form':form , 'horarios_disponibles': horarios_disponibles,'fecha':fecha, 'cancha':cancha}
     return render(request, "turnos/buscar_turno.html", context)
+
+
+
+
+    
+
+    
+
+

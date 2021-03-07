@@ -109,6 +109,50 @@ window.onload = function() {
 
 
 
+    let btnbloquearUsuario = document.querySelectorAll('[data-target="#bloquearusuario"]');
+
+    btnbloquearUsuario.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            let id = this.dataset.id;
+
+            // Asignar datos a ventana modal:
+
+
+
+            document.getElementById('confirmarBloqueo').href = '/usuario/bloquear/' + id
+
+
+
+
+        });
+    });
+
+
+
+
+
+    let btndesbloquearUsuario = document.querySelectorAll('[data-target="#desbloquearusuario"]');
+
+    btndesbloquearUsuario.forEach(btn => {
+        btn.addEventListener('click', function() {
+
+            let id = this.dataset.id;
+
+            // Asignar datos a ventana modal:
+
+
+
+            document.getElementById('confirmardesbloqueo').href = '/usuario/bloquear/' + id
+
+
+
+
+        });
+    });
+
+
+
 
 
 

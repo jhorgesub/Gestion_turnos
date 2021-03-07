@@ -12,7 +12,7 @@ from .forms import CreateUserForm, EditProfileForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from.models import Noticia
+from .models import Noticia,Perfil
 # Create your views here.
 
 
@@ -69,6 +69,12 @@ def register(request):
         
         if form.is_valid():
             form.save()
+            user_last= User.objects.last()
+            perfil = Perfil(usuario=user_last)
+            perfil.save()
+            
+
+
             
             messages.success(request,"La cuenta fue creada exitosamente")
             return redirect('login')
@@ -85,13 +91,17 @@ def register(request):
 
 
 def editar_perfil(request):
+   
     if request.method=='POST':
-
+        
      
         form=EditProfileForm(request.POST, instance=request.user)
         
         if form.is_valid():
             form.save()
+            perfil = Perfil.objects.get(usuario=request.user)
+            perfil.avatar=request.FILES.get('avatar')
+            perfil.save()
             return redirect('lista_turnos')
     else :
 
@@ -118,5 +128,51 @@ def mostrar_noticia(request):
     noticia=Noticia.objects.all()
     return render(request, 'autenticacion/noticias.html', {'noticia':noticia})
 
+
+
+
+
+
+
+
+
+
     
+
+def listado_usuarios(request):
+
+    
+
+    if(request.user.is_authenticated):
+        if (request.user.is_staff):
+            if request.GET.get('dni')!=None:
+
+                usuarios= User.objects.filter(is_staff=False,username=request.GET.get('dni'))
+               
+                context= {'usuarios':usuarios,'count':usuarios.count()}
+                return render(request, "turnos/listado_usuarios.html", context)
+            
+            else:
+
+                usuarios= User.objects.filter(is_staff=False)
+                context= {'usuarios':usuarios}
+                return render(request, "turnos/listado_usuarios.html", context)
+        else:
+            return redirect('lista_turnos')
+
+    
+    else:
+        
+        return redirect('home')
+
+
+def bloquear_usuario(request,id):
+
+    perfil= Perfil.objects.get(usuario=id)
+    perfil.bloqueado=not perfil.bloqueado
+    perfil.save()
+
+
+    return redirect('listado_usuarios')
+
 

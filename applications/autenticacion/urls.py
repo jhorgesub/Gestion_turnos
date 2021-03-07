@@ -21,5 +21,9 @@ urlpatterns = [
     path('usuario/editar', views.editar_perfil, name="perfil-edit"),
     path('cambiar_contraseña/', views.cambiar_contraseña, name="cambiar_contraseña"),
     path('novedades/', views.mostrar_noticia, name="novedades"),
+    path('usuarios/', views.listado_usuarios,name='listado_usuarios'),
+    path('usuario/bloquear/<id>', views.bloquear_usuario,name='bloquear_usuario'),
+
+    
 
 ]
