@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-
+from .models import Noticia
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -35,3 +35,8 @@ class EditProfileForm(UserChangeForm):
         model=User
         fields=['first_name', 'last_name', 'email', 'password']
 
+
+class NoticiaForm(forms.ModelForm):
+    class Meta:
+        model=Noticia
+        fields=['title', 'body'] 

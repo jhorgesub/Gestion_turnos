@@ -1,0 +1,12 @@
+{% extends 'index.html' %} {% load static %}{% block content %}
+
+<div class="noticias">
+    <h1>{{ noticia.title }}</h1>
+    <p>{{ noticia.body | linebreaks }}</p>
+    <small>{{ noticia.created.date }}</small>
+    <br/>
+    <br/>
+    <a class="btn btn-primary" href="{% url 'novedades' %}">Volver</a> {% if user.is_staff %}
+    <a class="btn btn-default" href="{% url 'editar_noticia' noticia.id %}">Editar</a> {% endif %}
+</div>
+{% endblock %}

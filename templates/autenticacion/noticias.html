@@ -1,6 +1,16 @@
+{% extends 'index.html' %} {% load static %}{% block content %}
 
-<h1>Novedades</h1>
-{% for n in noticia %}
-    <li>{{ n.title }}
-    {{ n.body }}</li>
-{% endfor %}
+
+<div class="noticias">
+    <h1>Novedades</h1>
+
+    {% for n in noticia %}
+    <hr>
+    <h2><a href="{% url 'detalle_noticias' n.pk %}">{{ n.title }}</a></h2>
+    <small>{{ n.created.date }}</small> {% endfor %}
+    <br/>
+    <br/>
+    <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+
+{% endblock content %}

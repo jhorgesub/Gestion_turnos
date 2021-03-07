@@ -1,6 +1,6 @@
 
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from datetime import datetime
 from django.contrib.auth.forms import (
     UserCreationForm, 
@@ -8,11 +8,12 @@ from django.contrib.auth.forms import (
     PasswordChangeForm
 )
 from django.contrib.auth.models import User
-from .forms import CreateUserForm, EditProfileForm
+from .forms import CreateUserForm, EditProfileForm, NoticiaForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from .models import Noticia,Perfil
+from django.utils import timezone
 # Create your views here.
 
 
@@ -124,10 +125,40 @@ def cambiar_contraseña(request):
         args={'form':form}
         return render(request,"autenticacion/cambiar_contraseña.html", args)
 
-def mostrar_noticia(request):
-    noticia=Noticia.objects.all()
-    return render(request, 'autenticacion/noticias.html', {'noticia':noticia})
+def noticia(request):
+    noticia=Noticia.objects.all().order_by('-created')
+    return render(request, 'autenticacion/noticias.html', {'noticia': noticia})
 
+def mostrar_noticia(request, id):
+    noticia=Noticia.objects.get(id=id)
+    return render(request, 'autenticacion/detalle_noticias.html', {'noticia':noticia})
+
+ 
+def nueva_noticia(request):
+    if request.method=='POST':
+        form=NoticiaForm(request.POST)
+
+        if form.is_valid():
+            noticia=form.save(commit=False)
+            noticia.created=timezone.now()
+            noticia.save()
+            return redirect('detalle_noticias', id=noticia.pk)
+    else:
+        form=NoticiaForm()    
+    return render(request, 'autenticacion/nueva_noticia.html', {'form': form})
+
+def editar_noticia(request, id):
+    noticia = get_object_or_404(Noticia, id=id)
+    if request.method == "POST":
+        form = NoticiaForm(request.POST, instance=noticia)
+        if form.is_valid():
+            noticia = form.save(commit=False)
+            noticia.created = timezone.now()
+            noticia.save()
+            return redirect('detalle_noticias', id=noticia.pk)
+    else:
+        form = NoticiaForm(instance=noticia)
+    return render(request, 'autenticacion/nueva_noticia.html', {'form': form})
 
 
 

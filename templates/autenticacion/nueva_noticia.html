@@ -1,0 +1,42 @@
+{% extends 'turnos/base_turnos.html' %} {% load crispy_forms_tags %} {% block content %}
+
+
+
+
+<div class="edit-noticia">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Nueva Noticia</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="card-body">
+                <div class="form-group">
+
+                    {{form.as_p}}
+                </div>
+
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}
