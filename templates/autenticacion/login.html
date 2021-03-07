@@ -1,77 +1,72 @@
- {% extends 'index.html' %}{% block content %}
+{% extends 'index.html' %}
+{% block body_class %}centered-form{% endblock %}
 
-<div class="container h-100">
-    <br><br><br><br><br><br>
-    <div class="d-flex justify-content-center h-100">
-        <div class="user_card">
-            <div class="d-flex justify-content-center">
+{% block content %}
 
-                <h3 id="form-title">Ingresar</h3>
+<div class="container user_card">
+    <div class="d-flex justify-content-center form_container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" name="username" placeholder="DNI" class="form-control" required>
+            </div>
+            <div class="input-group mb-2">
+                <div class="input-group-append">
+                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
             </div>
 
-            <div class="d-flex justify-content-xl-center form_container">
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" name="username" placeholder="DNI" class="form-control" required>
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password" name="password" placeholder="Contraseña" class="form-control" required>
-                    </div>
-
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <input class="btn login_btn" type="submit" value="Ingresar">
-                    </div>
-                </form>
-
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <input class="btn login_btn" type="submit" value="Ingresar">
             </div>
+        </form>
 
+    </div>
 
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <li>
                 <div class="alert alert-danger my-3" role="alert">
                     {{ message }}
                 </div>
-                {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            </li>
+            {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+            <li>
                 <div class="alert alert-success my-3" role="alert">
                     {{ message }}
                 </div>
-                {% endif %}
-
-                </li>
-                {% endfor %}
-            </ul>
+            </li>
             {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    <a href="{% url 'user_visitante' %}" class="ml-2"> Ingresar Como Visitante</a>
-                </div>
-
-            </div>
-
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    ¿No tiene una cuenta? <a href="{% url 'register' %}" class="ml-2">Registrarse</a>
-                </div>
-
-            </div>
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    ¿Olvidó su contraseña? <a href="{% url 'reset_password' %}" class="ml-2">Restablecer Contraseña</a>
-                </div>
-
-            </div>
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            <a href="{% url 'user_visitante' %}" class="ml-2"> Ingresar Como Visitante</a>
         </div>
+
+    </div>
+
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            ¿No tiene una cuenta? <a href="{% url 'register' %}" class="ml-2">Registrarse</a>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            ¿Olvidó su contraseña? <a href="{% url 'reset_password' %}" class="ml-2">Restablecer Contraseña</a>
+        </div>
+
     </div>
 </div>
-
 
 {% endblock content %}
