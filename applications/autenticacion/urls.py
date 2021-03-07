@@ -20,7 +20,10 @@ urlpatterns = [
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='autenticacion/password_reset_done.html'),name="password_reset_complete"),
     path('usuario/editar', views.editar_perfil, name="perfil-edit"),
     path('cambiar_contraseña/', views.cambiar_contraseña, name="cambiar_contraseña"),
-    path('novedades/', views.mostrar_noticia, name="novedades"),
+    path('novedades/', views.noticia, name="novedades"),
+    path('novedades/<int:id>/', views.mostrar_noticia, name="detalle_noticias"),
+    path('novedades/nueva', views.nueva_noticia, name="nueva_noticia"),
+    path('novedades/<int:id>/editar', views.editar_noticia, name="editar_noticia"),
     path('usuarios/', views.listado_usuarios,name='listado_usuarios'),
     path('usuario/bloquear/<id>', views.bloquear_usuario,name='bloquear_usuario'),
 
