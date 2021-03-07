@@ -18,15 +18,9 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-<<<<<<< HEAD
         'NAME': 'prueba',
         'USER': 'adrianapp',
         'PASSWORD': 'info2020',
-=======
-        'NAME': 'dbgestionturnos',
-        'USER': 'postgres',
-        'PASSWORD': '0314092',
->>>>>>> 84a108799256961d108f598627c860c089f8d6f4
         'HOST':'localhost',
         'PORT':'5432'
     }
@@ -39,9 +33,3 @@ DATABASES = {
     }
 } """
 
-EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER='info.app.g6@gmail.com' ## Es un correo creado para enviar las solicitudes de cambo de pass
-EMAIL_HOST_PASSWORD='informatorio2020'

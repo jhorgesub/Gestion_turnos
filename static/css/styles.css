@@ -16,7 +16,7 @@ h1 {
 
 .user_card {
     width: 500px;
-    margin-top: auto;
+    margin-top: 10rem;
     margin-bottom: 20rem;
     background: #74cfbf;
     position: relative;
@@ -244,4 +244,11 @@ aside .logout {
 
 .avatar {
     margin: 0 auto;
+}
+
+.correo_send {
+    margin: 20rem auto 10rem auto;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
 }

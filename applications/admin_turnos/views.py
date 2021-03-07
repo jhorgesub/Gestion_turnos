@@ -131,7 +131,7 @@ def lista_turnos(request):
             print(fecha)
 
             try:
-                context ={'listado_turnos':Turno.objects.filter(date=fecha).order_by('-date')}
+                context ={'listado_turnos':Turno.objects.filter(date=fecha,usuario=request.user).order_by('-date')}
             except Exception as e :
                 return redirect('lista_turnos')  
         else : 
