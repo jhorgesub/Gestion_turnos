@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate,login,logout, update_session_auth_h
 from django.contrib.auth.decorators import login_required
 from .models import Noticia,Perfil
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
@@ -126,7 +127,17 @@ def cambiar_contraseña(request):
         return render(request,"autenticacion/cambiar_contraseña.html", args)
 
 def noticia(request):
-    noticia=Noticia.objects.all().order_by('-created')
+    lista_noticia=Noticia.objects.all().order_by('-created')
+    page = request.GET.get('page', '1')
+    paginator = Paginator(lista_noticia, 5)
+    
+    try:
+        noticia = paginator.page(page)
+    except PageNotAnInteger:
+        noticia = paginator.page(1)
+    except EmptyPage:
+        noticia = paginator.page(paginator.num_pages)
+
     return render(request, 'autenticacion/noticias.html', {'noticia': noticia})
 
 def mostrar_noticia(request, id):
