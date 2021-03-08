@@ -101,7 +101,7 @@ def editar_perfil(request):
         if form.is_valid():
             form.save()
             perfil = Perfil.objects.get(usuario=request.user)
-            request.FILES.get('avatar')
+            perfil.avatar = request.FILES.get('avatar')
             perfil.save()
             return redirect('lista_turnos')
     else :
