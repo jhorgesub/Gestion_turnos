@@ -120,7 +120,27 @@ Bloquear
 
 
 </table>
-
+{% if usuarios.has_other_pages %}
+<ul class="pagination">
+  {% if usuarios.has_previous %}
+    <li><a href="?page={{ usuarios.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+    <li class="disabled"><span>&laquo;</span></li>
+  {% endif %}
+  {% for i in usuarios.paginator.page_range %}
+    {% if usuarios.number == i %}
+      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+  {% endfor %}
+  {% if usuarios.has_next %}
+    <li><a href="?page={{ usuarios.next_page_number }}">&raquo;</a></li>
+  {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+</ul>
+{% endif %}
 
 <!-- <nav class="Page navigation example nav-pagination">
 

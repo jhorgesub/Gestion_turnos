@@ -26,7 +26,7 @@ urlpatterns = [
     path('novedades/<int:id>/editar', views.editar_noticia, name="editar_noticia"),
     path('usuarios/', views.listado_usuarios,name='listado_usuarios'),
     path('usuario/bloquear/<id>', views.bloquear_usuario,name='bloquear_usuario'),
-   
+    path('usuario/avatar', views.imagen_perfil, name="imagen_perfil"),
     
 
 ]

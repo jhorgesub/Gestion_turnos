@@ -1,0 +1,39 @@
+{% extends 'turnos/base_turnos.html' %}{% block content %}
+
+
+
+<div class="edit-user">
+
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Cambiar imagen de perfil</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        {% if user.is_authenticated %}
+            
+        <form role="form" enctype="multipart/form-data" action=""  method="POST" id="upload-image-form">
+            {% csrf_token %}
+            <div class="card-body">
+               
+              
+               {{form.as_p}}
+                
+			
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+
+            
+        {% endif %}
+        </form>
+       
+
+    </div>
+
+</div>
+
+{% endblock content %}

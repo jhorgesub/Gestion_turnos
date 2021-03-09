@@ -3,7 +3,7 @@
 
 
 
-<div class="edit-noticia">
+<div class="edit-user">
 
     <div class="card card-primary">
         <div class="card-header">
@@ -14,12 +14,15 @@
         <form method="POST">
             {% csrf_token %}
             <div class="card-body">
+                
                 <div class="form-group">
-
-                    {{form.as_p}}
-                </div>
-
-
+                    <label for="exampleFormControlInput1" class="form-label">Título</label>
+                    <input type="title" class="form-control" name="title" id="title" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="form-label">Texto</label>
+                    <textarea class="form-control" name="body" id="body" rows="5"></textarea>
+                  </div>
 
             </div>
             <!-- /.card-body -->

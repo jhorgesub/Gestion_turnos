@@ -66,10 +66,14 @@
                             {{request.user.username}}
                             {% endif %}
                         </a>
-                        {% if user.perfil.avatar %}
-                        <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
+                        {% if user.is_staff %}
+                            <img src="{% static 'img/logo-jogo-bonito.svg' %} " class="rounded " width="80 " height="80 ">
                         {% else %}
-                        <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
+                            {% if user.perfil.avatar %}
+                            <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
+                            {% else %}
+                            <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
+                            {% endif %}
                         {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
