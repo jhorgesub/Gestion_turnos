@@ -37,6 +37,8 @@ class EditProfileForm(UserChangeForm):
 
 
 class NoticiaForm(forms.ModelForm):
+    title = forms.CharField( label='Título')
+    body = forms.CharField(widget=forms.Textarea, label='Descripción')
     class Meta:
         model=Noticia
         fields=['title', 'body'] 
