@@ -8,7 +8,7 @@ from django.contrib.auth.forms import (
     PasswordChangeForm
 )
 from django.contrib.auth.models import User
-from .forms import CreateUserForm, EditProfileForm, NoticiaForm
+from .forms import CreateUserForm, EditProfileForm, NoticiaForm, ImagenPerfilForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -93,17 +93,13 @@ def register(request):
 
 
 def editar_perfil(request):
-   
     if request.method=='POST':
-        
+
      
         form=EditProfileForm(request.POST, instance=request.user)
         
         if form.is_valid():
             form.save()
-            perfil = Perfil.objects.get(usuario=request.user)
-            perfil.avatar = request.FILES.get('avatar')
-            perfil.save()
             return redirect('lista_turnos')
     else :
 
@@ -171,6 +167,19 @@ def editar_noticia(request, id):
         form = NoticiaForm(instance=noticia)
     return render(request, 'autenticacion/nueva_noticia.html', {'form': form})
 
+def imagen_perfil(request):
+    if request.method=='POST':
+        form=ImagenPerfilForm(request.POST, request.FILES, instance=request.user.perfil)
+
+        if form.is_valid():
+            form.save()
+            
+            
+            return redirect('imagen_perfil')
+    
+    else:
+        form=ImagenPerfilForm(instance=request.user.perfil)
+    return render(request, 'autenticacion/insertar_imagen.html', {'form': form})
 
 
 def listado_usuarios(request):
@@ -186,7 +195,16 @@ def listado_usuarios(request):
             
             else:
 
-                usuarios= User.objects.filter(is_staff=False)
+                lista_usuarios= User.objects.filter(is_staff=False)
+                page = request.GET.get('page', '1')
+                paginator = Paginator(lista_usuarios, 5)
+                
+                try:
+                    usuarios = paginator.page(page)
+                except PageNotAnInteger:
+                    usuarios = paginator.page(1)
+                except EmptyPage:
+                    usuarios = paginator.page(paginator.num_pages)
                 context= {'usuarios':usuarios}
                 return render(request, "turnos/listado_usuarios.html", context)
         else:

@@ -99,11 +99,13 @@
                         </div>
 
                         <div class="avatar mb-3">
-
-                            {% if user.perfil.avatar %}
-                            <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
-                            <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
-
+                            {% if user.is_staff %}
+                            <img src="{% static 'img/logo-jogo-bonito.svg' %} " class="rounded " width="80 " height="80 ">
+                            {% else %}
+                                {% if user.perfil.avatar %}
+                                <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
+                                <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
+                            {% endif %}
                         </div>
                         <li class="nav-item has-treeview ">
                             <a href="# " class="nav-link ">
@@ -166,13 +168,22 @@
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Nueva noticia</p>
                                     </a>
-                                    {% endif %}
+                                    <a href="{% url 'perfil-edit' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
+                                        <p>Editar Perfil</p>
+                                    </a>
+                                    {% else %}
 
-                                <li class="nav-item ">
+                            
                                     <a href="{% url 'perfil-edit' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Editar perfil</p>
                                     </a>
+                                    <a href="{% url 'imagen_perfil' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Imagen de Perfil</p>
+                                    </a>
+                                    {% endif %}
                                 </li>
 
                             </ul>
