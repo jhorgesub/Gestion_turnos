@@ -173,17 +173,7 @@ def editar_noticia(request, id):
 
 
 
-
-
-
-
-
-
-    
-
 def listado_usuarios(request):
-
-    
 
     if(request.user.is_authenticated):
         if (request.user.is_staff):
@@ -216,5 +206,8 @@ def bloquear_usuario(request,id):
 
 
     return redirect('listado_usuarios')
+
+def acerca_de(request):
+    return render (request,'autenticacion/acerca_de.html')
 
 

@@ -60,10 +60,9 @@
 
                     <li class="nav-item ">
                         <a class="navbar-brand mx-5" href="{% url 'lista_turnos' %}">Hola
-                            {% if user.first_name %}
-                            {{request.user.first_name}}
+                            {% if user.is_staff %} Administrador
                             {% else %}
-                            {{request.user.username}}
+                            {{request.user.first_name}}
                             {% endif %}
                         </a>
                         {% if user.perfil.avatar %}
@@ -90,7 +89,8 @@
 
                         <li class="nav-item ">
                             <a class="btn btn-dark" href="{% url 'novedades' %}">Novedades</a>
-                            <a class="btn btn-dark" href="{% url 'login' %}">Iniciar Sesión</a>
+                            <a class="btn btn-dark" href="{% url 'acerca_de' %}">Acerca de</a>
+                            <a class="btn btn-dark" href="{% url 'login' %}"> <i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
 
                         </li>
 

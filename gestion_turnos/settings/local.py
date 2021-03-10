@@ -18,9 +18,9 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'prueba',
+        'NAME': 'dbgestionturnos',
         'USER': 'postgres',
-        'PASSWORD': 'infoinfo',
+        'PASSWORD': '0314092',
         'HOST':'localhost',
         'PORT':'5432'
     }
