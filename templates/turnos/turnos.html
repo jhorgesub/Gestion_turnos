@@ -7,8 +7,9 @@
         <h3>Lista de turnos </h3>
 
         {% if user.is_staff == False %}
+        {% if request.user.perfil.bloqueado == False %}
         <a href="{% url 'buscar_turno' %}" class="btn btn-success mt-3">Nuevo Turno</a> {% endif %}
-
+        {% endif %}
 
     </div>
 

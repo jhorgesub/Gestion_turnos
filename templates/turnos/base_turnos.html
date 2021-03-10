@@ -58,7 +58,7 @@
 
                 {% if request.user.perfil.bloqueado == True %}
                 <li class="nav-item d-none d-sm-inline-block">
-                    <p class="alert alert-danger mx-5">Usted se encuentra bloqueado</p>
+                    <p class="alert alert-danger mx-5">Usted se encuentra bloqueado. No podrá registar nuevos turnos</p>
                 </li>
 
                 {% endif %}
@@ -110,8 +110,13 @@
                         <li class="nav-item has-treeview ">
                             <a href="# " class="nav-link ">
                                 <i class="nav-icon fas fa-edit "></i>
+                                {% if user.is_staff %}
+                                Listados 
+                                {% else %}
+                                Turnos
+                                {% endif %}
                                 <p>
-                                    Listados
+                                    
                                     <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
