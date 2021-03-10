@@ -18,11 +18,7 @@ ALLOWED_HOSTS = []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-<<<<<<< HEAD
         'NAME': 'dbgestionturnos',
-=======
-        'NAME': 'turnos',
->>>>>>> d86f66e2a6c9b02b5031c797de452e0739e3fdd6
         'USER': 'postgres',
         'PASSWORD': '0314092',
         'HOST':'localhost',
