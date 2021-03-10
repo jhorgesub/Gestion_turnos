@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Noticia
+from .models import Noticia, Perfil
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -37,8 +37,14 @@ class EditProfileForm(UserChangeForm):
 
 
 class NoticiaForm(forms.ModelForm):
+    title = forms.CharField( label='Título')
+    body = forms.CharField(widget=forms.Textarea, label='Descripción')
     class Meta:
         model=Noticia
         fields=['title', 'body'] 
 
+class ImagenPerfilForm(forms.ModelForm):
+    class Meta:
+        model=Perfil
+        fields=['avatar']
         

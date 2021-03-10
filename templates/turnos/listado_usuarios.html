@@ -4,39 +4,34 @@
 <div class="row">
 
     <div class="col-12">
-        <h3>Lista de Usuarios Registrados</h3>
+        <h3>Lista de usuarios registrados</h3>
 
 
     </div>
-
-
 
 </div>
 
 
 <div class="row align-center ml-auto mt-5">
 
-
     <div class="col-12 my-4">
         <form action="" method="GET">
-            <label for="dni" class="mx-3">Buscar DNI</label>
+            <label for="dni" class="mx-3"><i class="fas fa-search"></i> Buscar DNI</label>
             <input type="text" value="" name="dni" id="dni">
             <button type="submit" class="btn-sm btn-success my-3">Buscar DNI</button>
-
-
         </form>
     </div>
-
-
-
-
+    <!--div class="col-12 my-0">
+        <form action="" method="GET">
+            <label for="nombre" class="mx-3">Buscar nombre</label>
+            <input type="text" value="" name="nombre" id="nombre">
+            <button type="submit" class="btn-sm btn-success my-3">Buscar nombre</button>
+        </form>
+    </div-->
 
 </div>
 
 <table id="example" class="table text-center tabla-turnos mt-5">
-
-
-
 
     {% if errors %}
     <div class="alert alert-danger my-4" role="alert">
@@ -46,15 +41,10 @@
     <thead>
         <tr>
 
-
             <th scope="col">DNI</th>
             <th scope="col">Nombre Usuario</th>
             <th scope="col">Estado</th>
-
-
-
             <th scope="col">Acciones</th>
-
 
         </tr>
     </thead>
@@ -65,13 +55,14 @@
 
             <td colspan="12">
                 <div class="alert alert-warning" role="alert">
-                    No se encontró ningún usuario
+                    Por favor ingrese un DNI para buscar
                 </div>
             </td>
 
-
         </tr>
-        {% endif %} {% for u in usuarios %}
+        {% endif %}
+        
+        {% for u in usuarios %}
         <tr scope="row">
 
             <td>{{u.username}}</td>
@@ -81,29 +72,22 @@
                 <p>bloqueado</p>
                 {% else %}
                 <p>desbloqueado</p>
-
-
-                {% endif %}
+        {% endif %}
             </td>
 
 
 
             <td>
 
-
-
                 {% if u.perfil.bloqueado == True %}
-                <button type="button" class="btn-sm btn-warning " data-toggle="modal" data-target="#desbloquearusuario" data-id={{u.id}}>
+                <button type="button" class="btn-sm btn-warning " data-toggle="modal" data-target="#desbloquearusuario"
+                    data-id={{u.id}}>
                     Desbloquear
                 </button> {% else %}
-                <button type="button" class="btn-sm btn-danger " data-toggle="modal" data-target="#bloquearusuario" data-id={{u.id}}>
-Bloquear               
-            </button> {% endif %}
-
-
-
-
-
+                <button type="button" class="btn-sm btn-danger " data-toggle="modal" data-target="#bloquearusuario"
+                    data-id={{u.id}}>
+                    Bloquear
+                </button> {% endif %}
 
             </td>
 
@@ -120,7 +104,27 @@ Bloquear
 
 
 </table>
-
+{% if usuarios.has_other_pages %}
+<ul class="pagination">
+  {% if usuarios.has_previous %}
+    <li><a href="?page={{ usuarios.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+    <li class="disabled"><span>&laquo;</span></li>
+  {% endif %}
+  {% for i in usuarios.paginator.page_range %}
+    {% if usuarios.number == i %}
+      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+      <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+  {% endfor %}
+  {% if usuarios.has_next %}
+    <li><a href="?page={{ usuarios.next_page_number }}">&raquo;</a></li>
+  {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+</ul>
+{% endif %}
 
 <!-- <nav class="Page navigation example nav-pagination">
 
@@ -247,14 +251,15 @@ Bloquear
 
 
 <!-- Modal -->
-<div class="modal fade" id="bloquearusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="bloquearusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Bloquear Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <p id="text-cancelar">¿Desea bloquear el usuario? </p>
@@ -272,14 +277,15 @@ Bloquear
 
 
 <!-- Modal -->
-<div class="modal fade" id="desbloquearusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="desbloquearusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Desbloquear Usuario</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <p id="text-cancelar">¿Desea desbloquear el usuario? </p>

@@ -60,16 +60,19 @@
 
                     <li class="nav-item ">
                         <a class="navbar-brand mx-5" href="{% url 'lista_turnos' %}">Hola
-                            {% if user.first_name %}
-                            {{request.user.first_name}}
+                            {% if user.is_staff %} Administrador
                             {% else %}
-                            {{request.user.username}}
+                            {{request.user.first_name}}
                             {% endif %}
                         </a>
-                        {% if user.perfil.avatar %}
-                        <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
+                        {% if user.is_staff %}
+                            <img src="{% static 'img/logo-jogo-bonito.svg' %} " class="rounded " width="80 " height="80 ">
                         {% else %}
-                        <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
+                            {% if user.perfil.avatar %}
+                            <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width="50" height="50">
+                            {% else %}
+                            <img src="{% static 'default_profile_picture.png' %}" class="rounded-circle" width="50" height="50">
+                            {% endif %}
                         {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -90,7 +93,8 @@
 
                         <li class="nav-item ">
                             <a class="btn btn-dark" href="{% url 'novedades' %}">Novedades</a>
-                            <a class="btn btn-dark" href="{% url 'login' %}">Iniciar Sesión</a>
+                            <a class="btn btn-dark" href="{% url 'acerca_de' %}">Acerca de</a>
+                            <a class="btn btn-dark" href="{% url 'login' %}"> <i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
 
                         </li>
 

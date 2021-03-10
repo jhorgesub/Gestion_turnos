@@ -53,7 +53,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a class="navbar-brand nav-link" href="{% url 'home' %}">Inicio</a>
+                    <a class="navbar-brand nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Inicio</a>
                 </li>
 
                 {% if request.user.perfil.bloqueado == True %}
@@ -74,7 +74,7 @@
             <!-- Brand Logo -->
             <a href="{% url 'lista_turnos' %}" class="brand-link">
                 <img src="{% static 'favicon/favicon-32x32.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light d-block">Gestión Turnos</span>
+                <span class="brand-text font-weight-light d-block">Gestión turnos</span>
             </a>
 
             <!-- Sidebar -->
@@ -99,17 +99,19 @@
                         </div>
 
                         <div class="avatar mb-3">
-
-                            {% if user.perfil.avatar %}
-                            <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
-                            <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
-
+                            {% if user.is_staff %}
+                            <img src="{% static 'img/logo-jogo-bonito.svg' %} " class="rounded " width="80 " height="80 ">
+                            {% else %}
+                                {% if user.perfil.avatar %}
+                                <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
+                                <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
+                            {% endif %}
                         </div>
                         <li class="nav-item has-treeview ">
                             <a href="# " class="nav-link ">
                                 <i class="nav-icon fas fa-edit "></i>
                                 <p>
-                                    Turnos
+                                    Listados
                                     <i class="fas fa-angle-left right "></i>
                                 </p>
                             </a>
@@ -120,14 +122,14 @@
                                 <li class="nav-item ">
                                     <a href="{% url 'lista_turnos' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Listado de Turnos</p>
+                                        <p>Listado de turnos</p>
                                     </a>
                                 </li>
 
                                 <li class="nav-item ">
                                     <a href="{% url 'listado_usuarios' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Listado de Usuarios</p>
+                                        <p>Listado de usuarios</p>
                                     </a>
                                 </li>
                                 {% else %}
@@ -136,13 +138,13 @@
 
                                     <a href="{% url 'buscar_turno' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Registrar Nuevo Turno</p>
+                                        <p>Registrar nuevo turno</p>
                                     </a>
                                 </li>
                                 <li class="nav-item ">
                                     <a href="{% url 'lista_turnos' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Mis Turnos</p>
+                                        <p>Mis turnos</p>
                                     </a>
                                 </li>
 
@@ -164,15 +166,24 @@
                                     {% if user.is_staff %}
                                     <a href="{% url 'nueva_noticia' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
-                                        <p>Nueva Noticia</p>
+                                        <p>Nueva noticia</p>
                                     </a>
-                                    {% endif %}
-
-                                <li class="nav-item ">
                                     <a href="{% url 'perfil-edit' %} " class="nav-link ">
                                         <i class="far fa-circle nav-icon "></i>
                                         <p>Editar Perfil</p>
                                     </a>
+                                    {% else %}
+
+                            
+                                    <a href="{% url 'perfil-edit' %} " class="nav-link ">
+                                        <i class="far fa-circle nav-icon "></i>
+                                        <p>Editar perfil</p>
+                                    </a>
+                                    <a href="{% url 'imagen_perfil' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Imagen de Perfil</p>
+                                    </a>
+                                    {% endif %}
                                 </li>
 
                             </ul>
