@@ -42,7 +42,7 @@ a:active {
 }
 
 .form_container {
-    margin-top: 20px;
+    margin-top: 2px;
 }
 
 .form_container form {
@@ -76,6 +76,11 @@ a:active {
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
+}
+
+.input-group-sm {
+    display: flex;
+   
 }
 
 .index-footer {
@@ -270,7 +275,7 @@ aside .logout {
 }
 
 .noticias {
-    margin: 8rem 5rem 10rem 5rem;
+    margin: 5rem 5rem 10rem 5rem;
 }
 
 .subtitulo-ayuda{

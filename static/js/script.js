@@ -96,7 +96,7 @@ window.onload = function() {
             // Asignar datos a ventana modal:
 
             let c = document.getElementById('text-cancelar');
-            c.innerHTML = "Desea cancelar el turno con los siguientes datos ? <hr> <br> Fecha : " + fecha +
+            c.innerHTML = "¿Desea cancelar el turno con los siguientes datos? <hr> <br> Fecha : " + fecha +
                 "<br> Hora : " + hora +
                 "<br> Cancha : " + cancha
             document.getElementById('confirmarCancelar').href = '/turnos/cancelar/' + turno
