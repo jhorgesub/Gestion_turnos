@@ -7,7 +7,7 @@
 
         {% if user.is_staff == False %}
         {% if request.user.perfil.bloqueado == False %}
-        <a href="{% url 'buscar_turno' %}" class="btn btn-success mt-3">Nuevo Turno</a> {% endif %}
+        <a href="{% url 'buscar_turno' %}" class="btn btn-success mt-3">Nuevo turno</a> {% endif %}
         {% endif %}
 
     </div>
@@ -20,7 +20,7 @@
     <form action="" method="GET">
         <label for="fecha" class="mx-3"><i class="fas fa-search"></i> Buscar fecha</label>
         <input type="date" onkeydown="return false" placeholder="Seleccione fecha" name="fecha">
-        <button type="submit" class="btn-sm btn-success mx-2"> Buscar Fecha</button>
+        <button type="submit" class="btn-sm btn-success mx-2"> Buscar fecha</button>
     </form>
 
 
@@ -53,7 +53,7 @@
             <th scope="col">Estado</th>
             {% if user.is_staff %}
             <th scope="col">DNI</th>
-            <th scope="col">Nombre Usuario</th>
+            <th scope="col">Nombre usuario</th>
 
             {% endif %}
             <th scope="col">Acciones</th>
@@ -242,7 +242,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Cancelar Turno</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Cancelar turno</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -251,7 +251,7 @@
                 <p id="text-cancelar">¿Desea cancelar el turno con los siguientes datos? </p>
             </div>
             <div class="modal-footer">
-                <a type="button" class="btn btn-primary" id="confirmarCancelar">Cancelar Turno</a>
+                <a type="button" class="btn btn-primary" id="confirmarCancelar">Cancelar turno</a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
             </div>
