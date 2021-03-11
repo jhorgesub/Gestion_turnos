@@ -51,7 +51,7 @@ a:active {
 
 .login_btn {
     width: 100%;
-    background: #33ccff !important;
+    background: #f5ab33 !important;
     color: white !important;
 }
 
@@ -65,7 +65,7 @@ a:active {
 }
 
 .input-group-text {
-    background: #f7ba5b !important;
+    background: #f5ab33 !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -275,7 +275,7 @@ aside .logout {
 }
 
 .noticias {
-    margin: 5rem 5rem 10rem 5rem;
+    margin: 3rem 5rem 10rem 5rem;
 }
 
 .subtitulo-ayuda{
