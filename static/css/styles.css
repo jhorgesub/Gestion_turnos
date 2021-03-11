@@ -272,3 +272,8 @@ aside .logout {
 .noticias {
     margin: 8rem 5rem 10rem 5rem;
 }
+
+.subtitulo-ayuda{
+    font-weight: bold;
+    line-height: 18px;
+}

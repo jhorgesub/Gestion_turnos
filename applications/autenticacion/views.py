@@ -225,7 +225,9 @@ def bloquear_usuario(request,id):
 
     return redirect('listado_usuarios')
 
-def acerca_de(request):
-    return render (request,'autenticacion/acerca_de.html')
+def quienes_somos(request):
+    return render (request,'autenticacion/quienes_somos.html')
 
+def ayuda (request):
+    return render (request, 'autenticacion/ayuda.html')
 

@@ -1,0 +1,20 @@
+{% extends 'index.html' %} {% load static %}{% block content %}
+
+<div class="ayuda noticias">
+    <h1>Ayuda</h1>
+    <p class="subtitulo-ayuda">¿Qué es Jogo Bonito?</p>
+    <p>Jogo Bonito es un nexo entre los jugadores y las canchas. Facilita las reservas a los clientes y el sistema optimiza la organización de los turnos.</p>
+    <p class="subtitulo-ayuda">¿Cómo realizar una reserva?</p>
+    <p>Jogo Bonito te permite alquilar en 3 simples pasos:
+    <p>1. Registrate.</p>
+    <p>2. Elegí el dia, la hora y la cancha donde querés jugar.</p>
+    <p>3. Alquilá, pagá en la cancha y disfrutá.</p>
+    
+    <p class="subtitulo-ayuda">¿Necesito registrarme para reservar?</p>
+    <p>Si. Jogo Bonito exige registro personal para realizar una reserva. Solo es necesario completar los datos obligatorios del formulario de reserva.</p>
+    <p class="subtitulo-ayuda">Política de cancelación:</p>
+    <p>Jogo Bonito cuenta con la posibilidad de cancelar un turno desde su sitio web. De forma paralela, también sugerimos llamar o concurrir a personalmente al complejo para cancelar algún turno en particular.</p>
+    <br/>
+    <a class="btn btn-primary" href="{% url 'home' %}">Volver</a>
+</div>
+{% endblock %}
