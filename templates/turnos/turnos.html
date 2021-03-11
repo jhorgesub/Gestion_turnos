@@ -1,6 +1,5 @@
  {% extends 'turnos/base_turnos.html' %} {% block content %}
 
-
 <div class="row">
 
     <div class="col-12">
@@ -13,13 +12,10 @@
 
     </div>
 
-
-
 </div>
 
 
 <div class="row align-center ml-auto mt-5">
-
 
     <form action="" method="GET">
         <label for="fecha" class="mx-3"><i class="fas fa-search"></i> Buscar fecha</label>
@@ -35,22 +31,14 @@
             <label for="dni" class="mx-3"><i class="fas fa-search"></i> Buscar DNI</label>
             <input type="text" value="" name="dni" id="dni">
             <button type="submit" class="btn-sm btn-success my-3">Buscar DNI</button>
-
-
         </form>
     </div>
 
     {% endif %}
 
-
-
-
 </div>
 
 <table id="example" class="table text-center tabla-turnos mt-5">
-
-
-
 
     {% if errors %}
     <div class="alert alert-danger my-4" role="alert">
@@ -249,15 +237,6 @@
 
 </nav>
 
-
-
-
-
-
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="cancelarTurno" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -279,8 +258,5 @@
         </div>
     </div>
 </div>
-
-
-
 
 {% endblock content %}

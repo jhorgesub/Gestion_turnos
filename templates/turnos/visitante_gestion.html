@@ -17,8 +17,8 @@
     <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
 
 
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <link rel="apple-touch-icon" sizes="57x57" href="{%static 'favicon/apple-icon-57x57.png'%}">
@@ -43,8 +43,6 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-
-
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -55,11 +53,9 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a class="navbar-brand nav-link" href="{% url 'home' %}">Inicio</a> </li>
+                    <a class="navbar-brand nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Inicio</a> </li>
 
             </ul>
-
-
 
 
         </nav>
@@ -83,13 +79,13 @@
 
 
                         <div class="text-center text-white">
-                            <p class="navbar-brand  my-2 " href="#"> Hola
-                                <p class=" ">Visitante</p>
-                            </p>
+                            <p class="navbar-brand  my-2 " href="#"> Hola Visitante</p>
+                            <div class="avatar mb-3">
+                                <img src="{% static 'default_user.png' %} " class="rounded-circle " width="60 " height="60 ">
+                            </div>
+                            
+                            
                         </div>
-
-
-
 
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
@@ -113,19 +109,7 @@
                             </ul>
                         </li>
 
-
-
-
-
-
-
-
-
-
-
                     </ul>
-
-
 
                 </nav>
                 <!-- /.sidebar-menu -->

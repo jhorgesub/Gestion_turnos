@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
 
-
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Asap&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
@@ -104,7 +104,7 @@
                             {% else %}
                                 {% if user.perfil.avatar %}
                                 <img src="{{ user.perfil.avatar.url }}" class="rounded-circle" width=" 60 " height="60"> {% else %}
-                                <img src="{% static 'default_profile_picture.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
+                                <img src="{% static 'default_user.png' %} " class="rounded-circle " width="60 " height="60 "> {% endif %}
                             {% endif %}
                         </div>
                         <li class="nav-item has-treeview ">
@@ -258,6 +258,7 @@
 
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js "></script>
     <script src="{% static 'js/script.js' %} "></script>
+    
 
 </body>
 

@@ -3,9 +3,7 @@
 
 <h3 class="">Buscar Horarios Disponibles</h3>
 
-
 <div class="d-block registro-turnos ">
-
 
     <form action="{% url 'buscar_turno' %}" method="POST" autocomplete="off">
         {% csrf_token %}
@@ -25,12 +23,7 @@
     </div>
     {% endif %}
 
-
-
-
 </div>
-
-
 
 
 <table class="table text-center">
@@ -39,7 +32,6 @@
         <tr>
             <h3 class="text-center">Horarios Disponibles</h3>
         </tr>
-
         <tr>
 
             <th scope="col">Hora</th>
@@ -69,8 +61,6 @@
 
             {% endif %}
 
-
-
         </tr>
 
         {% endfor %}
@@ -87,19 +77,14 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registro de Turnos</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-
-
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
 
             <div class="modal-body">
 
                 <p>¿Desea registrar el turno? </p>
-
-
-
 
                 <form action="{% url 'registro_turnos' %}" method="post">
                     {% csrf_token %}
@@ -111,15 +96,12 @@
                         <button type="submit" class="btn-sm btn-success">Registrar</button>
                         <button type="button" class="btn-sm btn-danger" data-dismiss="modal">Cancelar</button>
                     </div>
-
-
-
+            
                 </form>
             </div>
 
         </div>
     </div>
 </div>
-
-
+  
 {% endblock content %}
