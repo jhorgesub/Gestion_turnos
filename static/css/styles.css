@@ -273,19 +273,18 @@ aside .logout {
     margin: 8rem 5rem 10rem 5rem;
 }
 
-.subtitulo-ayuda{
+.subtitulo-ayuda {
     font-weight: bold;
     line-height: 18px;
 }
 
-.main-footer{
+.main-footer {
     font-size: 16px;
     color: rgb(255, 255, 255);
     background: rgb(101, 101, 101);
-    text-align:center;
-    padding: 5px 0 5px;
+    text-align: center;
+    padding: 40px 0 10px;
     display: block;
-    width: 100%;
     bottom: 0;
     border-top: 1px solid #ddd;
 }
