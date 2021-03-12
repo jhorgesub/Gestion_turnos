@@ -12,8 +12,8 @@ html {
     height: 100%;
     margin-bottom: -136.3px;
     padding-bottom: 136.3px;
-    margin-top: -138px;
-    padding-top: 138px;
+    padding-top: 98px;
+    margin-top: -98px;
 }
 
 h1 {
@@ -32,8 +32,12 @@ a:active {
     color: #2b8637;
 }
 
+.logo {
+    height: 50px;
+}
+
 .user_card {
-    width: 500px;
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -218,6 +222,20 @@ ul.messages {
 
 /* RESPONSIVE CSS
   -------------------------------------------------- */
+@media (min-width: 520px) {
+    .logo {
+        height: 90px;
+    }
+
+    .centered-form main {
+        margin-top: -138px;
+        padding-top: 138px;
+    }
+
+    .user_card {
+        width: 500px;
+    }
+}
 
 @media (min-width: 40em) {
     /* Bump up size of carousel content */
@@ -267,10 +285,14 @@ aside .logout {
 }
 
 .correo_send {
-    margin: 20rem auto 10rem auto;
+    margin: auto;
     padding: 2rem;
-    width: 100%;
+    width: 80%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
 .noticias {
