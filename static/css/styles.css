@@ -42,7 +42,7 @@ a:active {
 }
 
 .form_container {
-    margin-top: 20px;
+    margin-top: 2px;
 }
 
 .form_container form {
@@ -51,7 +51,7 @@ a:active {
 
 .login_btn {
     width: 100%;
-    background: #33ccff !important;
+    background: #f5ab33 !important;
     color: white !important;
 }
 
@@ -65,7 +65,7 @@ a:active {
 }
 
 .input-group-text {
-    background: #f7ba5b !important;
+    background: #f5ab33 !important;
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
@@ -76,6 +76,10 @@ a:active {
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
+}
+
+.input-group-sm {
+    display: flex;
 }
 
 .index-footer {
@@ -270,22 +274,21 @@ aside .logout {
 }
 
 .noticias {
-    margin: 8rem 5rem 10rem 5rem;
+    margin: 3rem 5rem 15rem 5rem;
 }
 
-.subtitulo-ayuda{
+.subtitulo-ayuda {
     font-weight: bold;
     line-height: 18px;
 }
 
-.main-footer{
+.main-footer {
     font-size: 16px;
     color: rgb(255, 255, 255);
     background: rgb(101, 101, 101);
-    text-align:center;
-    padding: 5px 0 5px;
+    text-align: center;
+    padding: 40px 0 10px;
     display: block;
-    width: 100%;
     bottom: 0;
     border-top: 1px solid #ddd;
 }
