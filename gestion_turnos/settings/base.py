@@ -1,23 +1,13 @@
-
-""" 
+import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent """
-
-import os
-from unipath import Path
-BASE_DIR = Path(__file__).ancestor(3)
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+# Base directory del proyecto (3 niveles hacia arriba desde este archivo)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '+b^#yfw%ktwepl*hat&wjax(+$bkwsklum_vn=*=g8^rha_hnm'
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,13 +18,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'applications.autenticacion',
     'applications.admin_turnos',
-
-    
-
-
 ]
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,13 +32,12 @@ MIDDLEWARE = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
 ROOT_URLCONF = 'gestion_turnos.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.child('templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,13 +51,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gestion_turnos.wsgi.application'
-
-
-
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -91,23 +67,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 SILENCED_SYSTEM_CHECKS = ['auth.E003', 'auth.W004']
-# Internationalization
-# https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'es'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
-
-
 
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
@@ -118,3 +84,9 @@ STATIC_URL = '/static/'
 MEDIA_URL= '/media/'
 STATICFILES_DIRS =(os.path.join(BASE_DIR,'static'),)
 MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+DEBUG = True  # Solo para desarrollo
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+
