@@ -1,6 +1,7 @@
-# Ignorar archivos estáticos y de templates en el cálculo del lenguaje
+*.js linguist-detectable=false
+*.css linguist-detectable=false
+*.html linguist-detectable=false
 Gestion_turnos/static/** linguist-vendored
 Gestion_turnos/templates/** linguist-vendored
-
-# Forzar que los .py cuenten como Python
 *.py linguist-language=Python
+
